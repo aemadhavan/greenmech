@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 
@@ -28,72 +28,7 @@ function IconGear({ className = "w-10 h-10" }: { className?: string }) {
     </svg>
   );
 }
-function IconWind({ className = "w-10 h-10" }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" viewBox="0 0 24 24">
-      <path d="M9.59 4.59A2 2 0 1 1 11 8H2M10.59 19.41A2 2 0 1 0 14 16H2M15.73 7.73A2.5 2.5 0 1 1 19.5 12H2" />
-    </svg>
-  );
-}
-function IconWrench({ className = "w-10 h-10" }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" viewBox="0 0 24 24">
-      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-    </svg>
-  );
-}
-function IconDisc({ className = "w-10 h-10" }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10" />
-      <circle cx="12" cy="12" r="3" />
-      <line x1="12" y1="2" x2="12" y2="5" strokeLinecap="round" />
-      <line x1="12" y1="19" x2="12" y2="22" strokeLinecap="round" />
-      <line x1="2" y1="12" x2="5" y2="12" strokeLinecap="round" />
-      <line x1="19" y1="12" x2="22" y2="12" strokeLinecap="round" />
-    </svg>
-  );
-}
-function IconDroplets({ className = "w-10 h-10" }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" viewBox="0 0 24 24">
-      <path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z" />
-      <path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97" />
-    </svg>
-  );
-}
-function IconAperture({ className = "w-10 h-10" }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10" />
-      <line x1="14.31" y1="8" x2="20.05" y2="17.94" />
-      <line x1="9.69" y1="8" x2="21.17" y2="8" />
-      <line x1="7.38" y1="12" x2="13.12" y2="2.06" />
-      <line x1="9.69" y1="16" x2="3.95" y2="6.06" />
-      <line x1="14.31" y1="16" x2="2.83" y2="16" />
-      <line x1="16.62" y1="12" x2="10.88" y2="21.94" />
-    </svg>
-  );
-}
-function IconRocket({ className = "w-10 h-10" }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" viewBox="0 0 24 24">
-      <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
-      <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
-      <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
-      <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
-    </svg>
-  );
-}
-function IconCar({ className = "w-10 h-10" }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" viewBox="0 0 24 24">
-      <path d="M19 17H5a2 2 0 0 1-2-2V9l3-5h12l3 5v6a2 2 0 0 1-2 2z" />
-      <circle cx="7.5" cy="17.5" r="2.5" />
-      <circle cx="16.5" cy="17.5" r="2.5" />
-    </svg>
-  );
-}
+
 function IconAward({ className = "w-8 h-8" }: { className?: string }) {
   return (
     <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" viewBox="0 0 24 24">
@@ -191,14 +126,14 @@ const NAV_LINKS = [
 ];
 
 const INDUSTRIES = [
-  { name: "Automation", desc: "Precision components for automation systems.", Icon: IconGear },
-  { name: "Wind Energy", desc: "High-precision parts for wind turbine applications.", Icon: IconWind },
-  { name: "Jigs & Fixtures", desc: "Custom jigs and fixtures for manufacturing processes.", Icon: IconWrench },
-  { name: "Precision Surface Grinding", desc: "Components requiring precise surface grinding.", Icon: IconDisc },
-  { name: "Oil & Gas", desc: "Durable components for the oil and gas industry.", Icon: IconDroplets },
-  { name: "Valve Components", desc: "Precision-engineered valve components.", Icon: IconAperture },
-  { name: "Aerospace", desc: "High-precision parts for aerospace applications.", Icon: IconRocket },
-  { name: "Automobiles", desc: "Precision components for automobile parts.", Icon: IconCar },
+  { name: "Automation", desc: "Precision components for automation systems.", img: "/indus-automation.jpeg" },
+  { name: "Wind Energy", desc: "High-precision parts for wind turbine applications.", img: "/indus-windenergy.jpeg" },
+  { name: "Jigs & Fixtures", desc: "Custom jigs and fixtures for manufacturing processes.", img: "/indus-jigs.jpeg" },
+  { name: "Precision Surface Grinding", desc: "Components requiring precise surface grinding.", img: "/indus-precision.jpeg" },
+  { name: "Oil & Gas", desc: "Durable components for the oil and gas industry.", img: "/indus-oilgas.jpeg" },
+  { name: "Valve Components", desc: "Precision-engineered valve components.", img: "/indus-value.jpeg" },
+  { name: "Aerospace", desc: "High-precision parts for aerospace applications.", img: "/indus-aerospace.jpeg" },
+  { name: "Automobiles", desc: "Precision components for automobile parts.", img: "/indus-automobiles.jpeg" },
 ];
 
 const CAPABILITIES = [
@@ -206,44 +141,76 @@ const CAPABILITIES = [
     name: "VMC Machining",
     specs: ["800 × 500 × 500 mm", "1100 × 650 × 600 mm", "1600 × 840 × 800 mm"],
     desc: "Vertical Machining Centers for complex multi-axis milling operations with exceptional positional accuracy.",
+    img: "/01-cap-VMC%20Machining.png",
   },
   {
     name: "Surface Grinding with HMI",
     specs: ["1500 × 600 × 600 mm", "1200 × 400 × 400 mm", "900 × 300 × 300 mm"],
     desc: "HMI-controlled precision surface grinding delivering superior flatness and surface finish quality.",
+    img: "/02-cap-Surface%20Grinding.png",
   },
   {
     name: "CNC Machining",
     specs: ["Dia. 250 × 500 mm Length", "Chuck Bore Dia. 65 mm"],
     desc: "CNC turning for precise cylindrical components, profiles, and complex rotational geometries.",
+    img: "/03-cap-CNC%20Machining.png",
   },
   {
     name: "Heavy Rough Milling",
     specs: ["1600 × 400 × 400 mm"],
     desc: "Heavy-duty milling capability for large workpieces requiring significant material removal.",
+    img: "/04-cap-Heavy%20Rough%20Milling.png",
   },
   {
     name: "M1TR Machining",
     specs: ["850 × 400 × 300 mm"],
     desc: "DRO-equipped milling machines for versatile, precise machining of complex components.",
+    img: "/05-cap-M1TR%20Machining.png",
   },
 ];
 
-const MACHINERY = [
-  { no: 1,  name: "VMC",                      make: "COSMOS CVM 800",              size: "800 × 500 × 500",  qty: 7 },
-  { no: 2,  name: "VMC",                      make: "COSMOS CVM 1160",             size: "1100 × 650 × 600", qty: 4 },
-  { no: 3,  name: "VMC",                      make: "BFW MODEL – BMV-70",          size: "1600 × 840 × 800", qty: 1 },
-  { no: 4,  name: "VMC",                      make: "HURCO VMX-42",                size: "1060 × 610 × 600", qty: 1 },
-  { no: 5,  name: "CNC Turning",              make: "LMW LL 20T L5",              size: "Dia. 250 × 500L",  qty: 1 },
-  { no: 6,  name: "Surface Grinding",         make: "LIVNICA KIKINDA – YUGOSLAVIA",size: "1500 × 600 × 500", qty: 1 },
-  { no: 7,  name: "Surface Grinding",         make: "COSMOS",                      size: "1000 × 500 × 400", qty: 1 },
-  { no: 8,  name: "Surface Grinding",         make: "ELB",                         size: "1000 × 350 × 400", qty: 1 },
-  { no: 9,  name: "Surface Grinding",         make: "HITACHI – JAPAN",             size: "1000 × 300 × 300", qty: 1 },
-  { no: 10, name: "M1TR DRO Milling Machine", make: "ESTEEM – TAIWAN",             size: "850 × 400 × 300",  qty: 4 },
-  { no: 11, name: "Vertical Milling Machine", make: "OKK Japan",                   size: "1000 × 450 × 400", qty: 1 },
-  { no: 12, name: "Universal Milling Machine",make: "HMT",                         size: "1000 × 450 × 400", qty: 1 },
-  { no: 13, name: "Horizontal Milling Machine",make:"TOYODA – JAPAN",              size: "800 × 400 × 350",  qty: 1 },
-  { no: 14, name: "Vertical Milling Machine", make: "HOWA SANGYO – JAPAN",         size: "700 × 350 × 300",  qty: 1 },
+const MACHINERY_CATEGORIES = [
+  {
+    id: "vmc",
+    label: "VMC Machining Centers",
+    watermark: "VMC",
+    desc: "High-precision vertical machining centers for complex multi-axis milling operations with exceptional positional accuracy.",
+    color: "#1B72B8",
+    machines: [
+      { no: 1, name: "VMC", make: "COSMOS CVM 800",     size: "800 × 500 × 500 mm",  qty: 7 },
+      { no: 2, name: "VMC", make: "COSMOS CVM 1160",    size: "1100 × 650 × 600 mm", qty: 4 },
+      { no: 3, name: "VMC", make: "BFW MODEL – BMV-70", size: "1600 × 840 × 800 mm", qty: 1 },
+      { no: 4, name: "VMC", make: "HURCO VMX-42",       size: "1060 × 610 × 600 mm", qty: 1 },
+    ],
+  },
+  {
+    id: "turning-grinding",
+    label: "Turning & Surface Grinding",
+    watermark: "CNC",
+    desc: "Precision CNC turning centers and HMI-controlled surface grinding machines delivering superior flatness and finish quality.",
+    color: "#F47920",
+    machines: [
+      { no: 5, name: "CNC Turning",    make: "LMW LL 20T L5",              size: "Dia. 250 × 500 mm L",  qty: 1 },
+      { no: 6, name: "Surface Grinding", make: "LIVNICA KIKINDA – YUGOSLAVIA", size: "1500 × 600 × 500 mm", qty: 1 },
+      { no: 7, name: "Surface Grinding", make: "COSMOS",                      size: "1000 × 500 × 400 mm", qty: 1 },
+      { no: 8, name: "Surface Grinding", make: "ELB",                         size: "1000 × 350 × 400 mm", qty: 1 },
+      { no: 9, name: "Surface Grinding", make: "HITACHI – JAPAN",             size: "1000 × 300 × 300 mm", qty: 1 },
+    ],
+  },
+  {
+    id: "milling",
+    label: "Milling Machines",
+    watermark: "MILL",
+    desc: "Versatile DRO-equipped and conventional milling machines for precise and repeatable component manufacture.",
+    color: "#10B981",
+    machines: [
+      { no: 10, name: "M1TR DRO Milling",  make: "ESTEEM – TAIWAN",      size: "850 × 400 × 300 mm",  qty: 4 },
+      { no: 11, name: "Vertical Milling",  make: "OKK – Japan",          size: "1000 × 450 × 400 mm", qty: 1 },
+      { no: 12, name: "Universal Milling", make: "HMT",                  size: "1000 × 450 × 400 mm", qty: 1 },
+      { no: 13, name: "Horizontal Milling",make: "TOYODA – JAPAN",       size: "800 × 400 × 350 mm",  qty: 1 },
+      { no: 14, name: "Vertical Milling",  make: "HOWA SANGYO – JAPAN",  size: "700 × 350 × 300 mm",  qty: 1 },
+    ],
+  },
 ];
 
 const QUALITY_INSTRUMENTS = [
@@ -312,12 +279,145 @@ const DISPLAY = { fontFamily: "var(--font-rajdhani)" } as const;
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % 3);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const HERO_SLIDES = [
+    {
+      accent: "PRECISION MACHINE",
+      title: (
+        <>
+          Perfection
+          <br />
+          <span className="text-[#F47920]">in Precision.</span>
+        </>
+      ),
+      desc: "Providing the best range of high-precision components with effective and timely delivery for global industries.",
+      visual: (
+        <div className="relative w-full h-full flex items-center justify-center">
+          <div className="absolute" style={{ color: "rgba(27,114,184,0.05)" }}>
+            <IconGear className="w-64 h-64" />
+          </div>
+          <div className="flex gap-5 items-end z-10">
+            {[1, 2, 3, 4].map((i) => (
+              <div
+                key={i}
+                className="w-14 rounded-t-xl shadow-xl relative overflow-hidden"
+                style={{
+                  height: `${80 + i * 36}px`,
+                  background: "linear-gradient(to top, rgba(27,114,184,0.55), rgba(27,114,184,0.08))",
+                  borderLeft: "1px solid rgba(27,114,184,0.3)",
+                  borderRight: "1px solid rgba(27,114,184,0.3)",
+                }}
+              >
+                <div className="w-full h-3 rounded-t-xl" style={{ background: "rgba(244,121,32,0.7)" }} />
+              </div>
+            ))}
+          </div>
+        </div>
+      ),
+    },
+    {
+      accent: "CNC & VMC",
+      title: (
+        <>
+          Job Works
+          <br />
+          <span className="text-[#F47920]">Excellence.</span>
+        </>
+      ),
+      desc: "Specialists in CNC Turning, Milling, and VMC Machining services from the heart of Coimbatore's industrial hub.",
+      visual: (
+        <div className="relative w-full h-full flex items-center justify-center">
+          <div className="relative">
+            <div
+              className="w-44 h-64 rounded-xl overflow-hidden relative shadow-2xl"
+              style={{ background: "#0A1628", border: "1px solid rgba(27,114,184,0.3)" }}
+            >
+              <div className="absolute inset-0 bg-linear-to-b from-transparent via-[#1B72B8]/15 to-transparent" />
+              <div className="absolute inset-0 flex flex-col justify-center items-center gap-2.5 p-6">
+                {[...Array(8)].map((_, i) => (
+                  <div key={i} className="h-1 w-full rounded" style={{ background: "rgba(27,114,184,0.14)" }} />
+                ))}
+              </div>
+              <div className="absolute bottom-5 left-0 right-0 flex justify-center">
+                <IconCpu className="w-10 h-10 text-[#1B72B8]/40" />
+              </div>
+            </div>
+            {/* Tool arm */}
+            <div className="absolute flex items-center" style={{ left: "-76px", top: "32%" }}>
+              <div
+                className="w-16 h-7 rounded-md"
+                style={{ background: "#071523", border: "1px solid rgba(27,114,184,0.25)" }}
+              />
+              <div className="w-16 h-0.5" style={{ background: "#F47920", boxShadow: "0 0 12px #F47920" }} />
+            </div>
+            {/* Right accent lines */}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 flex flex-col gap-2.5">
+              {[60, 35, 80].map((w, i) => (
+                <div key={i} className="h-0.5 rounded" style={{ width: `${w}%`, background: "rgba(27,114,184,0.3)" }} />
+              ))}
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      accent: "9+ YEARS OF",
+      title: (
+        <>
+          Manufacturing
+          <br />
+          <span className="text-[#F47920]">Trust.</span>
+        </>
+      ),
+      desc: "A decade of engineering excellence as a premier manufacturer and service provider in Tamil Nadu.",
+      visual: (
+        <div className="relative flex flex-col items-center justify-center w-full h-full gap-6">
+          <div
+            className="relative flex items-center justify-center rounded-full"
+            style={{ width: "220px", height: "220px", background: "rgba(27,114,184,0.08)", border: "1px solid rgba(27,114,184,0.3)" }}
+          >
+            <div
+              className="absolute inset-0 rounded-full animate-spin-slow"
+              style={{ border: "1px dashed rgba(27,114,184,0.25)" }}
+            />
+            <div
+              className="absolute rounded-full"
+              style={{ inset: "16px", border: "1px solid rgba(244,121,32,0.15)" }}
+            />
+            <IconGear className="w-24 h-24 text-[#1B72B8]/60 animate-spin-slow" />
+          </div>
+          <div className="flex gap-3">
+            <div
+              className="px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-[#1B72B8]"
+              style={{ background: "rgba(27,114,184,0.1)", border: "1px solid rgba(27,114,184,0.2)" }}
+            >
+              ISO Certified
+            </div>
+            <div
+              className="px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-[#F47920]"
+              style={{ background: "rgba(244,121,32,0.1)", border: "1px solid rgba(244,121,32,0.2)" }}
+            >
+              TUV India
+            </div>
+          </div>
+        </div>
+      ),
+    },
+  ];
 
   const scrollTo = (id: string) => {
     setMenuOpen(false);
@@ -332,7 +432,7 @@ export default function Home() {
       <nav
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-[#0B1120]/95 backdrop-blur-md shadow-xl shadow-black/40 border-b border-white/5"
+            ? "bg-[#071523]/95 backdrop-blur-md shadow-xl shadow-black/40 border-b border-white/5"
             : "bg-transparent"
         }`}
       >
@@ -343,20 +443,15 @@ export default function Home() {
               onClick={() => scrollTo("home")}
               className="flex items-center gap-2.5 group"
             >
-              <div
-                className="w-9 h-9 rounded-lg bg-[#1A5EAB] flex items-center justify-center text-white font-bold text-xl shrink-0"
-                style={DISPLAY}
-              >
-                G
-              </div>
+              <img src="/greenmach-logo.png" alt="GreenMech logo" className="w-10 h-10 shrink-0 object-contain" />
               <div className="text-left leading-tight">
                 <span
-                  className="block text-white font-bold text-base"
+                  className="block text-[#1B72B8] font-bold text-base"
                   style={DISPLAY}
                 >
                   GreenMech
                 </span>
-                <span className="block text-[#F5A623] text-[11px] font-medium tracking-widest uppercase">
+                <span className="block text-[#F47920] text-[11px] font-medium tracking-widest uppercase">
                   Automation
                 </span>
               </div>
@@ -368,14 +463,14 @@ export default function Home() {
                 <button
                   key={link.href}
                   onClick={() => scrollTo(link.href)}
-                  className="px-3.5 py-2 text-sm text-white/75 hover:text-[#F5A623] transition-colors duration-200 font-medium tracking-wide"
+                  className="px-3.5 py-2 text-sm text-white/75 hover:text-[#F47920] transition-colors duration-200 font-medium tracking-wide"
                 >
                   {link.label}
                 </button>
               ))}
               <button
                 onClick={() => scrollTo("contact")}
-                className="ml-4 px-5 py-2.5 bg-[#F5A623] text-[#0B1120] text-sm font-bold rounded-lg hover:bg-[#e09510] transition-colors duration-200 tracking-wider"
+                className="ml-4 px-5 py-2.5 bg-[#F47920] text-[#071523] text-sm font-bold rounded-lg hover:bg-[#D36410] transition-colors duration-200 tracking-wider"
                 style={DISPLAY}
               >
                 GET A QUOTE
@@ -395,19 +490,19 @@ export default function Home() {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="lg:hidden bg-[#0B1120]/98 backdrop-blur-md border-t border-white/10 px-5 pb-5">
+          <div className="lg:hidden bg-[#071523]/98 backdrop-blur-md border-t border-white/10 px-5 pb-5">
             {NAV_LINKS.map((link) => (
               <button
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
-                className="block w-full text-left py-3.5 text-white/75 hover:text-[#F5A623] transition-colors border-b border-white/5 text-sm font-medium"
+                className="block w-full text-left py-3.5 text-white/75 hover:text-[#F47920] transition-colors border-b border-white/5 text-sm font-medium"
               >
                 {link.label}
               </button>
             ))}
             <button
               onClick={() => scrollTo("contact")}
-              className="mt-5 w-full py-3.5 bg-[#F5A623] text-[#0B1120] font-bold rounded-lg text-sm tracking-wider"
+              className="mt-5 w-full py-3.5 bg-[#F47920] text-[#071523] font-bold rounded-lg text-sm tracking-wider"
               style={DISPLAY}
             >
               GET A QUOTE
@@ -422,73 +517,113 @@ export default function Home() {
         ══════════════════════════════════════════ */}
         <section
           id="home"
-          className="relative min-h-screen flex flex-col justify-center bg-[#0B1120] overflow-hidden"
+          className="relative min-h-screen flex flex-col bg-[#071523] overflow-hidden"
         >
           {/* Grid pattern */}
           <div className="absolute inset-0 hero-grid opacity-100" />
 
           {/* Radial gradients for depth */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0B1120] via-[#0B1120]/70 to-[#1A5EAB]/10" />
+          <div className="absolute inset-0 bg-linear-to-br from-[#071523] via-[#071523]/70 to-[#1B72B8]/10" />
           <div
-            className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full opacity-10 blur-3xl"
-            style={{ background: "radial-gradient(circle, #1A5EAB 0%, transparent 70%)" }}
+            className="absolute top-0 right-0 w-175 h-175 rounded-full opacity-10 blur-3xl"
+            style={{ background: "radial-gradient(circle, #1B72B8 0%, transparent 70%)" }}
           />
           <div
-            className="absolute bottom-20 left-0 w-[400px] h-[400px] rounded-full opacity-8 blur-3xl"
-            style={{ background: "radial-gradient(circle, #F5A623 0%, transparent 70%)" }}
+            className="absolute bottom-20 left-0 w-100 h-100 rounded-full opacity-8 blur-3xl"
+            style={{ background: "radial-gradient(circle, #F47920 0%, transparent 70%)" }}
           />
 
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8">
-            <div className="hero-content">
-              {/* ISO badge */}
-              <div className="animate-fade-in-up inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1A5EAB]/15 border border-[#1A5EAB]/35 text-[#F5A623] text-xs font-bold tracking-widest uppercase mb-8">
-                <span className="w-2 h-2 bg-[#F5A623] rounded-full animate-pulse-dot" />
-                ISO 9001 Certified &nbsp;·&nbsp; TUV India
-              </div>
+          {/* Carousel content */}
+          <div className="relative z-10 flex-1 flex items-center w-full">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-8 w-full">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-8 lg:gap-16">
 
-              {/* Headline */}
-              <h1
-                className="animate-fade-in-up text-6xl sm:text-7xl lg:text-[96px] font-bold text-white leading-[0.95] mb-6"
-                style={{ ...DISPLAY, letterSpacing: "-0.02em" }}
-              >
-                Perfection
-                <br />
-                <span
-                  className="text-[#F5A623]"
-                  style={{ WebkitTextStroke: "0px" }}
-                >
-                  in Precision.
-                </span>
-              </h1>
+                {/* Left: Text */}
+                <div className="w-full md:w-3/5 lg:w-1/2">
+                  <div key={activeSlide}>
+                    {/* Accent badge */}
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1B72B8]/15 border border-[#1B72B8]/35 text-[#F47920] text-xs font-bold tracking-widest uppercase mb-8">
+                      <span className="w-2 h-2 bg-[#F47920] rounded-full animate-pulse-dot" />
+                      {HERO_SLIDES[activeSlide].accent}
+                    </div>
 
-              {/* Subtext */}
-              <p className="animate-fade-in-up max-w-lg text-lg text-white/55 mb-10 leading-relaxed">
-                Premier CNC, VMC &amp; Surface Grinding machining from
-                Coimbatore — delivering high-precision components across 8+
-                industries with zero-compromise quality.
-              </p>
+                    {/* Headline */}
+                    <h1
+                      className="animate-fade-in-up text-white text-5xl sm:text-6xl lg:text-[88px] font-bold leading-[0.95] mb-6"
+                      style={{ ...DISPLAY, letterSpacing: "-0.02em" }}
+                    >
+                      {HERO_SLIDES[activeSlide].title}
+                    </h1>
 
-              {/* CTAs */}
-              <div className="animate-fade-in-up flex flex-wrap gap-4 mb-24">
-                <button
-                  onClick={() => scrollTo("contact")}
-                  className="px-8 py-4 bg-[#F5A623] text-[#0B1120] font-bold rounded-lg hover:bg-[#e09510] transition-all duration-200 hover:shadow-xl hover:shadow-[#F5A623]/20 hover:-translate-y-0.5 text-base tracking-wider"
-                  style={DISPLAY}
-                >
-                  GET A QUOTE
-                </button>
-                <button
-                  onClick={() => scrollTo("capabilities")}
-                  className="px-8 py-4 border border-white/25 text-white font-medium rounded-lg hover:border-white/50 hover:bg-white/5 transition-all duration-200 text-base"
-                >
-                  Our Capabilities →
-                </button>
+                    {/* Subtext */}
+                    <p className="animate-fade-in-up max-w-lg text-lg text-white/55 mb-10 leading-relaxed">
+                      {HERO_SLIDES[activeSlide].desc}
+                    </p>
+
+                    {/* CTAs */}
+                    <div className="animate-fade-in-up flex flex-wrap gap-4">
+                      <button
+                        onClick={() => scrollTo("contact")}
+                        className="px-8 py-4 bg-[#F47920] text-[#071523] font-bold rounded-lg hover:bg-[#D36410] transition-all duration-200 hover:shadow-xl hover:shadow-[#F47920]/20 hover:-translate-y-0.5 text-base tracking-wider"
+                        style={DISPLAY}
+                      >
+                        GET A QUOTE
+                      </button>
+                      <button
+                        onClick={() => scrollTo("capabilities")}
+                        className="px-8 py-4 border border-white/25 text-white font-medium rounded-lg hover:border-white/50 hover:bg-white/5 transition-all duration-200 text-base"
+                      >
+                        Our Capabilities →
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right: Visual */}
+                <div className="w-full md:w-2/5 lg:w-1/2 h-[260px] md:h-[420px] flex items-center justify-center">
+                  <div key={`visual-${activeSlide}`} className="w-full h-full">
+                    {HERO_SLIDES[activeSlide].visual}
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
 
+          {/* Carousel dots */}
+          <div className="relative z-20 flex justify-center gap-3 pb-5">
+            {HERO_SLIDES.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveSlide(idx)}
+                className={`transition-all duration-500 rounded-full border ${
+                  activeSlide === idx
+                    ? "w-10 bg-[#F47920] border-[#F47920] h-2"
+                    : "w-2 bg-transparent border-white/30 h-2 hover:border-white/50"
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Vertical slide counter */}
+          <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-center gap-2 z-20">
+            <span className="text-[10px] font-bold text-[#F47920]" style={DISPLAY}>
+              0{activeSlide + 1}
+            </span>
+            <div className="h-20 w-px bg-white/10 relative">
+              <div
+                className="absolute top-0 left-0 w-full bg-[#F47920] transition-all duration-700"
+                style={{ height: `${((activeSlide + 1) / HERO_SLIDES.length) * 100}%` }}
+              />
+            </div>
+            <span className="text-[10px] font-bold text-white/20" style={DISPLAY}>
+              0{HERO_SLIDES.length}
+            </span>
+          </div>
+
           {/* Stats Strip */}
-          <div className="relative z-10 mt-auto bg-[#1A5EAB]/90 backdrop-blur border-t border-[#1A5EAB]">
+          <div className="relative z-10 bg-[#1B72B8]/90 backdrop-blur border-t border-[#1B72B8]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 {[
@@ -498,10 +633,7 @@ export default function Home() {
                   { value: "100%", label: "Quality Assured" },
                 ].map((s, i) => (
                   <div key={i} className="text-white py-1">
-                    <div
-                      className="text-3xl font-bold text-[#F5A623]"
-                      style={DISPLAY}
-                    >
+                    <div className="text-3xl font-bold text-[#F47920]" style={DISPLAY}>
                       {s.value}
                     </div>
                     <div className="text-sm text-white/75 font-medium mt-0.5">
@@ -522,23 +654,23 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
               {/* Visual */}
               <div className="relative">
-                <div className="relative rounded-2xl overflow-hidden bg-[#0B1120] aspect-[4/3] flex items-center justify-center">
+                <div className="relative rounded-2xl overflow-hidden bg-[#071523] aspect-4/3 flex items-center justify-center">
                   <div className="absolute inset-0 hero-grid opacity-40" />
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#0B1120]/60 to-[#1A5EAB]/10" />
+                  <div className="absolute inset-0 bg-linear-to-br from-[#071523]/60 to-[#1B72B8]/10" />
                   <div className="relative z-10 flex flex-col items-center gap-3">
-                    <div className="text-[#1A5EAB]/60">
+                    <div className="text-[#1B72B8]/60">
                       <IconGear className="w-36 h-36 animate-spin-slow" />
                     </div>
                     <span className="text-white/30 text-xs font-bold tracking-[0.25em] uppercase">
                       Precision Engineering
                     </span>
                   </div>
-                  <div className="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-[#F5A623] rounded-tl-2xl" />
-                  <div className="absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-[#1A5EAB] rounded-br-2xl" />
+                  <div className="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-[#F47920] rounded-tl-2xl" />
+                  <div className="absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-[#1B72B8] rounded-br-2xl" />
                 </div>
 
                 {/* Floating badge */}
-                <div className="absolute -bottom-6 -right-4 sm:-right-6 bg-[#1A5EAB] text-white rounded-xl px-5 py-3.5 shadow-2xl shadow-[#1A5EAB]/30">
+                <div className="absolute -bottom-6 -right-4 sm:-right-6 bg-[#1B72B8] text-white rounded-xl px-5 py-3.5 shadow-2xl shadow-[#1B72B8]/30">
                   <div className="text-[10px] text-white/60 uppercase tracking-widest mb-0.5">
                     Certified
                   </div>
@@ -548,7 +680,7 @@ export default function Home() {
                   >
                     ISO 9001
                   </div>
-                  <div className="text-[11px] text-[#F5A623] font-medium">
+                  <div className="text-[11px] text-[#F47920] font-medium">
                     TUV India
                   </div>
                 </div>
@@ -556,25 +688,25 @@ export default function Home() {
 
               {/* Content */}
               <div className="lg:pl-4">
-                <p className="text-[#1A5EAB] text-xs font-bold tracking-widest uppercase mb-3">
+                <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">
                   Who We Are
                 </p>
                 <h2
-                  className="text-4xl lg:text-5xl font-bold text-[#0F172A] mb-6 section-title"
+                  className="text-4xl lg:text-5xl font-bold text-[#0C1826] mb-6 section-title"
                   style={DISPLAY}
                 >
                   Premier Precision
                   <br />
                   Machining Solutions
                 </h2>
-                <p className="text-[#475569] leading-relaxed mb-5 text-lg">
+                <p className="text-[#385578] leading-relaxed mb-5 text-lg">
                   GreenMech Automation is a premier provider of precision
                   machining solutions specializing in CNC, VMC, and surface
                   grinding. Our expertise extends across multiple industries,
                   delivering high-precision components with a commitment to
                   quality and efficiency.
                 </p>
-                <p className="text-[#64748B] leading-relaxed mb-8">
+                <p className="text-[#4A6B8C] leading-relaxed mb-8">
                   Based in Coimbatore — India&apos;s precision machining hub —
                   we combine decades of hands-on expertise with cutting-edge
                   machinery from world-class manufacturers to serve clients in
@@ -591,12 +723,12 @@ export default function Home() {
                   ].map(([label, value]) => (
                     <div
                       key={label}
-                      className="bg-[#F8FAFC] rounded-lg p-3.5 border border-[#E2E8F0]"
+                      className="bg-[#EFF7FF] rounded-lg p-3.5 border border-[#C4D9EE]"
                     >
-                      <div className="text-[10px] text-[#94A3B8] uppercase tracking-widest mb-1">
+                      <div className="text-[10px] text-[#6888AA] uppercase tracking-widest mb-1">
                         {label}
                       </div>
-                      <div className="text-sm font-semibold text-[#1E293B]">
+                      <div className="text-sm font-semibold text-[#1A2C40]">
                         {value}
                       </div>
                     </div>
@@ -605,7 +737,7 @@ export default function Home() {
 
                 <button
                   onClick={() => scrollTo("contact")}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#0F172A] text-white font-semibold rounded-lg hover:bg-[#1A5EAB] transition-colors duration-200 text-sm"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#0C1826] text-white font-semibold rounded-lg hover:bg-[#1B72B8] transition-colors duration-200 text-sm"
                 >
                   Get in Touch →
                 </button>
@@ -617,42 +749,45 @@ export default function Home() {
         {/* ══════════════════════════════════════════
             INDUSTRIES
         ══════════════════════════════════════════ */}
-        <section id="industries" className="py-24 bg-[#F8FAFC]">
+        <section id="industries" className="py-24 bg-[#EFF7FF]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-14">
-              <p className="text-[#1A5EAB] text-xs font-bold tracking-widest uppercase mb-3">
+              <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">
                 Our Reach
               </p>
               <h2
-                className="text-4xl lg:text-5xl font-bold text-[#0F172A] section-title-center"
+                className="text-4xl lg:text-5xl font-bold text-[#0C1826] section-title-center"
                 style={DISPLAY}
               >
                 Industries We Serve
               </h2>
-              <p className="mt-6 text-[#64748B] max-w-xl mx-auto">
+              <p className="mt-6 text-[#4A6B8C] max-w-xl mx-auto">
                 Precision-engineered components for demanding sectors — each
                 with unique tolerances and zero room for error.
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {INDUSTRIES.map(({ name, desc, Icon }, i) => (
+              {INDUSTRIES.map(({ name, desc, img }, i) => (
                 <div
                   key={i}
-                  className="bg-white rounded-xl overflow-hidden border border-[#E2E8F0] shadow-sm hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300 group"
+                  className="bg-white rounded-xl overflow-hidden border border-[#C4D9EE] shadow-sm hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300 group"
                 >
-                  <div className="h-1 bg-[#E2E8F0] group-hover:bg-[#1A5EAB] transition-colors duration-300" />
-                  <div className="p-6">
-                    <div className="text-[#1A5EAB] mb-4 group-hover:text-[#F5A623] transition-colors duration-300">
-                      <Icon className="w-10 h-10" />
-                    </div>
+                  <div className="relative aspect-video overflow-hidden">
+                    <img
+                      src={img}
+                      alt={name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-5">
                     <h3
-                      className="font-bold text-[#0F172A] mb-2 text-lg leading-tight"
+                      className="font-bold text-[#0C1826] mb-1.5 text-base leading-tight"
                       style={DISPLAY}
                     >
                       {name}
                     </h3>
-                    <p className="text-[#64748B] text-sm leading-relaxed">{desc}</p>
+                    <p className="text-[#4A6B8C] text-sm leading-relaxed">{desc}</p>
                   </div>
                 </div>
               ))}
@@ -666,16 +801,16 @@ export default function Home() {
         <section id="capabilities" className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-14">
-              <p className="text-[#1A5EAB] text-xs font-bold tracking-widest uppercase mb-3">
+              <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">
                 What We Do
               </p>
               <h2
-                className="text-4xl lg:text-5xl font-bold text-[#0F172A] section-title-center"
+                className="text-4xl lg:text-5xl font-bold text-[#0C1826] section-title-center"
                 style={DISPLAY}
               >
                 Our Capabilities
               </h2>
-              <p className="mt-6 text-[#64748B] max-w-xl mx-auto">
+              <p className="mt-6 text-[#4A6B8C] max-w-xl mx-auto">
                 State-of-the-art machining capabilities with precise
                 specifications to handle any production requirement.
               </p>
@@ -685,28 +820,37 @@ export default function Home() {
               {CAPABILITIES.map((cap, i) => (
                 <div
                   key={i}
-                  className="rounded-xl overflow-hidden border border-[#E2E8F0] hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group"
+                  className="rounded-xl overflow-hidden border border-[#C4D9EE] hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group bg-white"
                 >
-                  <div className="bg-[#1A5EAB] px-6 py-5 group-hover:bg-[#0F172A] transition-colors duration-300">
+                  {/* Image */}
+                  <div className="relative aspect-video overflow-hidden">
+                    <img
+                      src={cap.img}
+                      alt={cap.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    {/* Title overlay */}
+                    <div className="absolute inset-0 bg-linear-to-t from-[#0C1826]/80 via-transparent to-transparent" />
                     <h3
-                      className="text-white font-bold text-2xl"
+                      className="absolute bottom-0 left-0 right-0 px-5 py-4 text-white font-bold text-xl leading-tight"
                       style={DISPLAY}
                     >
                       {cap.name}
                     </h3>
                   </div>
-                  <div className="bg-white p-6">
-                    <p className="text-[#64748B] text-sm mb-5 leading-relaxed">
+                  {/* Body */}
+                  <div className="p-6">
+                    <p className="text-[#4A6B8C] text-sm mb-5 leading-relaxed">
                       {cap.desc}
                     </p>
                     <div className="space-y-2.5">
                       {cap.specs.map((spec, j) => (
                         <div
                           key={j}
-                          className="flex items-center gap-2.5 text-sm text-[#1E293B] font-medium"
+                          className="flex items-center gap-2.5"
                         >
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#F5A623] shrink-0" />
-                          <span className="font-mono text-xs text-[#374151]">{spec}</span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#F47920] shrink-0" />
+                          <span className="font-mono text-xs text-[#2A4262]">{spec}</span>
                         </div>
                       ))}
                     </div>
@@ -718,72 +862,153 @@ export default function Home() {
         </section>
 
         {/* ══════════════════════════════════════════
-            MACHINERY TABLE
+            MACHINERY SHOWROOM
         ══════════════════════════════════════════ */}
-        <section id="machinery" className="py-24 bg-[#0B1120]">
+        <section id="machinery" className="py-24 bg-[#071523]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-14">
-              <p className="text-[#F5A623] text-xs font-bold tracking-widest uppercase mb-3">
+            {/* Header */}
+            <div className="text-center mb-16">
+              <p className="text-[#F47920] text-xs font-bold tracking-widest uppercase mb-3">
                 Our Fleet
               </p>
               <h2
                 className="text-4xl lg:text-5xl font-bold text-white section-title-center"
                 style={DISPLAY}
               >
-                List of Machineries
+                Machinery Showroom
               </h2>
               <p className="mt-6 text-white/45 max-w-xl mx-auto">
                 A comprehensive fleet of precision machines sourced from
                 world-class global manufacturers.
               </p>
+              <div className="flex items-center justify-center gap-10 mt-8">
+                {[
+                  { value: "14", label: "Machine Models" },
+                  { value: "26+", label: "Total Units" },
+                  { value: "3",  label: "Categories" },
+                ].map((s) => (
+                  <div key={s.label}>
+                    <div className="text-2xl font-bold text-[#F47920]" style={DISPLAY}>{s.value}</div>
+                    <div className="text-[11px] text-white/35 tracking-wider uppercase mt-0.5">{s.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="overflow-x-auto rounded-xl border border-white/8">
-              <table className="w-full min-w-[700px]">
-                <thead>
-                  <tr className="bg-[#1A5EAB]">
-                    {["Sr. No.", "Name of Machine", "Make", "Travel Size (mm)", "Qty"].map(
-                      (h) => (
-                        <th
-                          key={h}
-                          className="px-5 py-4 text-left text-sm font-bold text-white tracking-wide"
-                          style={DISPLAY}
-                        >
-                          {h}
-                        </th>
-                      )
-                    )}
-                  </tr>
-                </thead>
-                <tbody>
-                  {MACHINERY.map((row, i) => (
-                    <tr
-                      key={i}
-                      className={`border-t border-white/5 hover:bg-white/5 transition-colors duration-150 ${
-                        i % 2 === 0 ? "bg-white/[0.025]" : "bg-transparent"
-                      }`}
+            {/* Categories */}
+            <div className="space-y-14">
+              {MACHINERY_CATEGORIES.map((cat, ci) => (
+                <div key={cat.id}>
+                  {/* ── Hero Banner ── */}
+                  <div className="relative rounded-2xl overflow-hidden mb-5 h-44 sm:h-52">
+                    {/* Base gradient */}
+                    <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #071523 0%, #0C1E32 100%)" }} />
+                    {/* Grid overlay */}
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+                        backgroundSize: "32px 32px",
+                      }}
+                    />
+                    {/* Color glow */}
+                    <div className="absolute -right-16 -top-16 w-72 h-72 rounded-full blur-3xl opacity-20" style={{ background: cat.color }} />
+                    {/* Bottom accent line */}
+                    <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: `linear-gradient(90deg, ${cat.color} 0%, transparent 60%)` }} />
+                    {/* Watermark */}
+                    <div
+                      className="absolute right-6 top-1/2 -translate-y-1/2 font-black select-none leading-none"
+                      style={{ ...DISPLAY, color: "rgba(255,255,255,0.04)", fontSize: "clamp(56px, 9vw, 108px)" }}
                     >
-                      <td className="px-5 py-4 text-[#F5A623] font-bold text-sm">
-                        {row.no}
-                      </td>
-                      <td className="px-5 py-4 text-white font-medium text-sm">
-                        {row.name}
-                      </td>
-                      <td className="px-5 py-4 text-white/65 text-sm">
-                        {row.make}
-                      </td>
-                      <td className="px-5 py-4 text-white/65 text-sm font-mono">
-                        {row.size}
-                      </td>
-                      <td className="px-5 py-4">
-                        <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#1A5EAB]/40 text-white font-bold text-sm">
-                          {row.qty}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                      {cat.watermark}
+                    </div>
+                    {/* Content */}
+                    <div className="relative z-10 flex items-center h-full px-7 sm:px-10">
+                      <div className="flex-1 pr-4">
+                        <div className="flex items-center gap-2 mb-3">
+                          <span
+                            className="inline-flex items-center justify-center w-5 h-5 rounded text-[9px] font-black"
+                            style={{ background: cat.color + "30", color: cat.color }}
+                          >
+                            {String(ci + 1).padStart(2, "0")}
+                          </span>
+                          <span className="text-[10px] font-bold tracking-[0.18em] uppercase" style={{ color: cat.color }}>
+                            Machine Category
+                          </span>
+                        </div>
+                        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 leading-tight" style={DISPLAY}>
+                          {cat.label}
+                        </h3>
+                        <p className="text-white/40 text-sm max-w-md leading-relaxed hidden sm:block">{cat.desc}</p>
+                      </div>
+                      <div className="hidden sm:flex flex-col gap-4 items-end shrink-0 ml-auto">
+                        <div className="text-right">
+                          <div className="text-4xl font-black leading-none" style={{ ...DISPLAY, color: cat.color }}>
+                            {cat.machines.length}
+                          </div>
+                          <div className="text-[10px] uppercase tracking-widest text-white/35 mt-1">Models</div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-3xl font-bold leading-none text-white/20" style={DISPLAY}>
+                            {cat.machines.reduce((s, m) => s + m.qty, 0)}
+                          </div>
+                          <div className="text-[10px] uppercase tracking-widest text-white/35 mt-1">Units</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* ── Horizontal Scroll Cards ── */}
+                  <div
+                    className="flex gap-4 overflow-x-auto pb-2"
+                    style={{ scrollbarWidth: "thin", scrollbarColor: `${cat.color}50 transparent` }}
+                  >
+                    {cat.machines.map((m, mi) => (
+                      <div
+                        key={mi}
+                        className="shrink-0 w-60 rounded-xl overflow-hidden bg-[#0A1628] border border-white/8 hover:border-white/20 hover:shadow-xl transition-all duration-300 group flex flex-col"
+                      >
+                        <div className="h-1" style={{ background: cat.color }} />
+                        <div className="p-5 flex flex-col flex-1">
+                          <div className="text-[10px] font-bold tracking-[0.18em] uppercase mb-3" style={{ color: cat.color }}>
+                            #{String(m.no).padStart(2, "0")}
+                          </div>
+                          <h4 className="text-white font-bold text-[15px] leading-snug mb-1" style={DISPLAY}>
+                            {m.name}
+                          </h4>
+                          <p className="text-white/40 text-xs leading-relaxed mb-4">{m.make}</p>
+                          <div className="mt-auto pt-4 border-t border-white/8 space-y-2.5">
+                            <div className="flex items-start gap-2">
+                              <svg className="w-3 h-3 text-white/25 mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" d="M3 9h18M3 15h18M9 3v18M15 3v18" />
+                              </svg>
+                              <span className="font-mono text-[11px] text-white/50 leading-relaxed">{m.size}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <svg className="w-3 h-3 text-white/25 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" viewBox="0 0 24 24">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                              </svg>
+                              <span className="text-[11px] text-white/50">{m.qty} {m.qty === 1 ? "unit" : "units"}</span>
+                              {m.qty > 1 && (
+                                <span
+                                  className="ml-auto text-[10px] font-bold px-2 py-0.5 rounded-full"
+                                  style={{ background: cat.color + "28", color: cat.color }}
+                                >
+                                  ×{m.qty}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="h-0.5 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
+                          style={{ background: `linear-gradient(90deg, ${cat.color}, transparent)` }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -791,19 +1016,19 @@ export default function Home() {
         {/* ══════════════════════════════════════════
             QUALITY CONTROL
         ══════════════════════════════════════════ */}
-        <section id="quality" className="py-24 bg-[#F8FAFC]">
+        <section id="quality" className="py-24 bg-[#EFF7FF]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-14">
-              <p className="text-[#1A5EAB] text-xs font-bold tracking-widest uppercase mb-3">
+              <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">
                 Quality First
               </p>
               <h2
-                className="text-4xl lg:text-5xl font-bold text-[#0F172A] section-title-center"
+                className="text-4xl lg:text-5xl font-bold text-[#0C1826] section-title-center"
                 style={DISPLAY}
               >
                 Inspection &amp; Quality Control
               </h2>
-              <p className="mt-6 text-[#64748B] max-w-xl mx-auto">
+              <p className="mt-6 text-[#4A6B8C] max-w-xl mx-auto">
                 Our comprehensive suite of calibrated instruments ensures every
                 component meets the highest precision standards before delivery.
               </p>
@@ -813,18 +1038,18 @@ export default function Home() {
               {QUALITY_INSTRUMENTS.map((inst, i) => (
                 <div
                   key={i}
-                  className="bg-white rounded-xl p-7 border border-[#E2E8F0] shadow-sm hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300 group"
+                  className="bg-white rounded-xl p-7 border border-[#C4D9EE] shadow-sm hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300 group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#F0F5FF] flex items-center justify-center mb-5 group-hover:bg-[#1A5EAB] transition-colors duration-300">
-                    <IconCheckCircle className="w-6 h-6 text-[#1A5EAB] group-hover:text-white transition-colors duration-300" />
+                  <div className="w-12 h-12 rounded-xl bg-[#E4F0FF] flex items-center justify-center mb-5 group-hover:bg-[#1B72B8] transition-colors duration-300">
+                    <IconCheckCircle className="w-6 h-6 text-[#1B72B8] group-hover:text-white transition-colors duration-300" />
                   </div>
                   <h3
-                    className="font-bold text-[#0F172A] mb-2.5 text-lg leading-tight"
+                    className="font-bold text-[#0C1826] mb-2.5 text-lg leading-tight"
                     style={DISPLAY}
                   >
                     {inst.name}
                   </h3>
-                  <p className="text-[#64748B] text-sm leading-relaxed">
+                  <p className="text-[#4A6B8C] text-sm leading-relaxed">
                     {inst.desc}
                   </p>
                 </div>
@@ -839,11 +1064,11 @@ export default function Home() {
         <section id="why-us" className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-14">
-              <p className="text-[#1A5EAB] text-xs font-bold tracking-widest uppercase mb-3">
+              <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">
                 Our Advantage
               </p>
               <h2
-                className="text-4xl lg:text-5xl font-bold text-[#0F172A] section-title-center"
+                className="text-4xl lg:text-5xl font-bold text-[#0C1826] section-title-center"
                 style={DISPLAY}
               >
                 Why Choose GreenMech?
@@ -854,18 +1079,18 @@ export default function Home() {
               {WHY_CHOOSE.map(({ title, desc, Icon }, i) => (
                 <div
                   key={i}
-                  className="text-center px-5 py-8 rounded-xl border border-[#E2E8F0] hover:border-[#1A5EAB] hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group"
+                  className="text-center px-5 py-8 rounded-xl border border-[#C4D9EE] hover:border-[#1B72B8] hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-[#F0F5FF] flex items-center justify-center mx-auto mb-5 text-[#1A5EAB] group-hover:bg-[#1A5EAB] group-hover:text-white transition-all duration-300">
+                  <div className="w-14 h-14 rounded-2xl bg-[#E4F0FF] flex items-center justify-center mx-auto mb-5 text-[#1B72B8] group-hover:bg-[#1B72B8] group-hover:text-white transition-all duration-300">
                     <Icon className="w-7 h-7" />
                   </div>
                   <h3
-                    className="font-bold text-[#0F172A] mb-2 text-base leading-tight"
+                    className="font-bold text-[#0C1826] mb-2 text-base leading-tight"
                     style={DISPLAY}
                   >
                     {title}
                   </h3>
-                  <p className="text-[#64748B] text-xs leading-relaxed">{desc}</p>
+                  <p className="text-[#4A6B8C] text-xs leading-relaxed">{desc}</p>
                 </div>
               ))}
             </div>
@@ -875,17 +1100,17 @@ export default function Home() {
         {/* ══════════════════════════════════════════
             VALUED CUSTOMERS
         ══════════════════════════════════════════ */}
-        <section className="py-20 bg-[#0B1120] relative overflow-hidden">
+        <section className="py-20 bg-[#071523] relative overflow-hidden">
           <div className="absolute inset-0 hero-grid opacity-30" />
           <div
             className="absolute inset-0 opacity-20"
             style={{
               background:
-                "radial-gradient(ellipse at center, #1A5EAB 0%, transparent 70%)",
+                "radial-gradient(ellipse at center, #1B72B8 0%, transparent 70%)",
             }}
           />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-[#F5A623] text-xs font-bold tracking-widest uppercase mb-3">
+            <p className="text-[#F47920] text-xs font-bold tracking-widest uppercase mb-3">
               Trusted By
             </p>
             <h2
@@ -898,27 +1123,26 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               {[
                 {
-                  abbr: "TEAL",
-                  full: "Titan Engineering & Automation Limited",
-                  color: "text-[#4BC8D4]",
+                  src: "/teal.jpeg",
+                  alt: "TEAL – Titan Engineering & Automation Limited",
+                  label: "",
                 },
                 {
-                  abbr: "INDO-MIM",
-                  full: "Complexity Simplified",
-                  color: "text-[#F5A623]",
+                  src: "/indo-mim.jpeg",
+                  alt: "INDO-MIM – Complexity Simplified",
+                  label: "",
                 },
               ].map((c, i) => (
                 <div
                   key={i}
-                  className="bg-white/6 backdrop-blur-sm border border-white/12 rounded-2xl px-12 py-8 text-center hover:bg-white/12 hover:border-white/25 transition-all duration-300 hover:-translate-y-1 min-w-[260px]"
+                  className="bg-white backdrop-blur-sm border border-white/20 rounded-2xl px-10 py-7 text-center hover:scale-105 hover:shadow-2xl hover:shadow-black/40 transition-all duration-300 min-w-65"
                 >
-                  <div
-                    className={`text-4xl font-black mb-2 ${c.color}`}
-                    style={{ ...DISPLAY, letterSpacing: "0.08em" }}
-                  >
-                    {c.abbr}
-                  </div>
-                  <div className="text-white/55 text-sm">{c.full}</div>
+                  <img
+                    src={c.src}
+                    alt={c.alt}
+                    className="h-14 w-auto mx-auto object-contain"
+                  />
+                  <div className="text-[#4A6B8C] text-xs mt-3 font-medium">{c.label}</div>
                 </div>
               ))}
             </div>
@@ -931,16 +1155,16 @@ export default function Home() {
         <section id="contact" className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-14">
-              <p className="text-[#1A5EAB] text-xs font-bold tracking-widest uppercase mb-3">
+              <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">
                 Reach Out
               </p>
               <h2
-                className="text-4xl lg:text-5xl font-bold text-[#0F172A] section-title-center"
+                className="text-4xl lg:text-5xl font-bold text-[#0C1826] section-title-center"
                 style={DISPLAY}
               >
                 Contact Us
               </h2>
-              <p className="mt-6 text-[#64748B] max-w-md mx-auto">
+              <p className="mt-6 text-[#4A6B8C] max-w-md mx-auto">
                 Ready to discuss your precision machining requirements? We
                 respond within 24 hours.
               </p>
@@ -948,8 +1172,8 @@ export default function Home() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
               {/* Info Panel */}
-              <div className="bg-[#0B1120] rounded-2xl p-8 lg:p-10 text-white relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-48 h-48 opacity-10" style={{ background: "radial-gradient(circle, #1A5EAB, transparent)" }} />
+              <div className="bg-[#071523] rounded-2xl p-8 lg:p-10 text-white relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-48 h-48 opacity-10" style={{ background: "radial-gradient(circle, #1B72B8, transparent)" }} />
                 <div className="relative z-10">
                   <div className="mb-2">
                     <span
@@ -959,7 +1183,7 @@ export default function Home() {
                       GreenMech Automation
                     </span>
                   </div>
-                  <p className="text-[#F5A623] text-sm font-medium tracking-wider mb-8">
+                  <p className="text-[#F47920] text-sm font-medium tracking-wider mb-8">
                     Perfection in Precision
                   </p>
 
@@ -983,8 +1207,8 @@ export default function Home() {
                         label: "Phone",
                         content: (
                           <>
-                            <a href="tel:+919566657428" className="block hover:text-[#F5A623] transition-colors">+91 95666 57428</a>
-                            <a href="tel:+919384947902" className="block hover:text-[#F5A623] transition-colors">+91 93849 47902</a>
+                            <a href="tel:+919566657428" className="block hover:text-[#F47920] transition-colors">+91 95666 57428</a>
+                            <a href="tel:+919384947902" className="block hover:text-[#F47920] transition-colors">+91 93849 47902</a>
                           </>
                         ),
                       },
@@ -994,7 +1218,7 @@ export default function Home() {
                         content: (
                           <a
                             href="mailto:greenmechcbe@gmail.com"
-                            className="hover:text-[#F5A623] transition-colors break-all"
+                            className="hover:text-[#F47920] transition-colors break-all"
                           >
                             greenmechcbe@gmail.com
                           </a>
@@ -1009,8 +1233,8 @@ export default function Home() {
                       },
                     ].map(({ Icon, label, content }, i) => (
                       <div key={i} className="flex gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-[#1A5EAB]/25 flex items-center justify-center shrink-0 mt-0.5">
-                          <Icon className="w-4.5 h-4.5 text-[#F5A623]" />
+                        <div className="w-10 h-10 rounded-lg bg-[#1B72B8]/25 flex items-center justify-center shrink-0 mt-0.5">
+                          <Icon className="w-4.5 h-4.5 text-[#F47920]" />
                         </div>
                         <div>
                           <div className="text-[10px] text-white/40 uppercase tracking-widest mb-1">
@@ -1025,7 +1249,7 @@ export default function Home() {
                   </div>
 
                   <div className="mt-10 pt-8 border-t border-white/8">
-                    <div className="inline-flex items-center gap-2.5 bg-[#1A5EAB]/20 rounded-lg px-4 py-2.5 text-sm text-white/60">
+                    <div className="inline-flex items-center gap-2.5 bg-[#1B72B8]/20 rounded-lg px-4 py-2.5 text-sm text-white/60">
                       <span className="w-2 h-2 bg-green-400 rounded-full" />
                       ISO 9001 Certified · TUV India
                     </div>
@@ -1040,72 +1264,72 @@ export default function Home() {
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm font-semibold text-[#374151] mb-1.5">
-                      Full Name <span className="text-[#F5A623]">*</span>
+                    <label className="block text-sm font-semibold text-[#2A4262] mb-1.5">
+                      Full Name <span className="text-[#F47920]">*</span>
                     </label>
                     <input
                       type="text"
                       required
                       placeholder="Your full name"
-                      className="w-full px-4 py-3 rounded-lg border border-[#D1D5DB] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1A5EAB]/50 focus:border-[#1A5EAB] text-sm transition-colors"
+                      className="w-full px-4 py-3 rounded-lg border border-[#B4CCDE] text-[#0C1826] placeholder-[#7698B0] focus:outline-none focus:ring-2 focus:ring-[#1B72B8]/50 focus:border-[#1B72B8] text-sm transition-colors"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-[#374151] mb-1.5">
+                    <label className="block text-sm font-semibold text-[#2A4262] mb-1.5">
                       Company
                     </label>
                     <input
                       type="text"
                       placeholder="Your company"
-                      className="w-full px-4 py-3 rounded-lg border border-[#D1D5DB] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1A5EAB]/50 focus:border-[#1A5EAB] text-sm transition-colors"
+                      className="w-full px-4 py-3 rounded-lg border border-[#B4CCDE] text-[#0C1826] placeholder-[#7698B0] focus:outline-none focus:ring-2 focus:ring-[#1B72B8]/50 focus:border-[#1B72B8] text-sm transition-colors"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm font-semibold text-[#374151] mb-1.5">
-                      Email <span className="text-[#F5A623]">*</span>
+                    <label className="block text-sm font-semibold text-[#2A4262] mb-1.5">
+                      Email <span className="text-[#F47920]">*</span>
                     </label>
                     <input
                       type="email"
                       required
                       placeholder="your@email.com"
-                      className="w-full px-4 py-3 rounded-lg border border-[#D1D5DB] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1A5EAB]/50 focus:border-[#1A5EAB] text-sm transition-colors"
+                      className="w-full px-4 py-3 rounded-lg border border-[#B4CCDE] text-[#0C1826] placeholder-[#7698B0] focus:outline-none focus:ring-2 focus:ring-[#1B72B8]/50 focus:border-[#1B72B8] text-sm transition-colors"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-[#374151] mb-1.5">
+                    <label className="block text-sm font-semibold text-[#2A4262] mb-1.5">
                       Phone
                     </label>
                     <input
                       type="tel"
                       placeholder="+91 00000 00000"
-                      className="w-full px-4 py-3 rounded-lg border border-[#D1D5DB] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1A5EAB]/50 focus:border-[#1A5EAB] text-sm transition-colors"
+                      className="w-full px-4 py-3 rounded-lg border border-[#B4CCDE] text-[#0C1826] placeholder-[#7698B0] focus:outline-none focus:ring-2 focus:ring-[#1B72B8]/50 focus:border-[#1B72B8] text-sm transition-colors"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-[#374151] mb-1.5">
-                    Message <span className="text-[#F5A623]">*</span>
+                  <label className="block text-sm font-semibold text-[#2A4262] mb-1.5">
+                    Message <span className="text-[#F47920]">*</span>
                   </label>
                   <textarea
                     rows={6}
                     required
                     placeholder="Describe your machining requirements, material, quantity, tolerances..."
-                    className="w-full px-4 py-3 rounded-lg border border-[#D1D5DB] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1A5EAB]/50 focus:border-[#1A5EAB] text-sm resize-none transition-colors"
+                    className="w-full px-4 py-3 rounded-lg border border-[#B4CCDE] text-[#0C1826] placeholder-[#7698B0] focus:outline-none focus:ring-2 focus:ring-[#1B72B8]/50 focus:border-[#1B72B8] text-sm resize-none transition-colors"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-4 bg-[#F5A623] text-[#0B1120] font-bold rounded-lg hover:bg-[#e09510] transition-all duration-200 hover:shadow-xl hover:shadow-[#F5A623]/20 text-base tracking-wider"
+                  className="w-full py-4 bg-[#F47920] text-[#071523] font-bold rounded-lg hover:bg-[#D36410] transition-all duration-200 hover:shadow-xl hover:shadow-[#F47920]/20 text-base tracking-wider"
                   style={DISPLAY}
                 >
                   SEND MESSAGE
                 </button>
-                <p className="text-center text-xs text-[#9CA3AF]">
+                <p className="text-center text-xs text-[#7698B0]">
                   We respond within 24 business hours.
                 </p>
               </form>
@@ -1117,18 +1341,13 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           FOOTER
       ══════════════════════════════════════════ */}
-      <footer className="bg-[#07090F] border-t border-white/5">
+      <footer className="bg-[#050D16] border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
             {/* Brand */}
             <div className="md:col-span-2">
               <div className="flex items-center gap-2.5 mb-5">
-                <div
-                  className="w-9 h-9 rounded-lg bg-[#1A5EAB] flex items-center justify-center text-white font-bold text-xl shrink-0"
-                  style={DISPLAY}
-                >
-                  G
-                </div>
+                <img src="/greenmach-logo.jpeg" alt="GreenMech logo" className="w-10 h-10 shrink-0 object-contain" />
                 <div>
                   <span
                     className="block text-white font-bold"
@@ -1136,7 +1355,7 @@ export default function Home() {
                   >
                     GreenMech Automation
                   </span>
-                  <span className="block text-[#F5A623] text-xs font-medium tracking-wider">
+                  <span className="block text-[#F47920] text-xs font-medium tracking-wider">
                     Perfection in Precision
                   </span>
                 </div>
@@ -1164,7 +1383,7 @@ export default function Home() {
                   <li key={link.href}>
                     <button
                       onClick={() => scrollTo(link.href)}
-                      className="text-white/40 hover:text-[#F5A623] text-sm transition-colors duration-200"
+                      className="text-white/40 hover:text-[#F47920] text-sm transition-colors duration-200"
                     >
                       {link.label}
                     </button>
@@ -1192,7 +1411,7 @@ export default function Home() {
                 <p>
                   <a
                     href="tel:+919566657428"
-                    className="hover:text-[#F5A623] transition-colors"
+                    className="hover:text-[#F47920] transition-colors"
                   >
                     +91 95666 57428
                   </a>
@@ -1200,7 +1419,7 @@ export default function Home() {
                 <p>
                   <a
                     href="mailto:greenmechcbe@gmail.com"
-                    className="hover:text-[#F5A623] transition-colors break-all"
+                    className="hover:text-[#F47920] transition-colors break-all"
                   >
                     greenmechcbe@gmail.com
                   </a>

@@ -30,9 +30,9 @@ body {
 
 /* ── Custom Scrollbar ── */
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #0F172A; }
-::-webkit-scrollbar-thumb { background: #1A5EAB; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #F5A623; }
+::-webkit-scrollbar-track { background: #0C1826; }
+::-webkit-scrollbar-thumb { background: #1B72B8; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #F47920; }
 
 /* ── Animations ── */
 @keyframes spin-slow {
@@ -69,7 +69,7 @@ body {
   display: block;
   width: 52px;
   height: 3px;
-  background: linear-gradient(90deg, #F5A623, #1A5EAB);
+  background: linear-gradient(90deg, #F47920, #1B72B8);
   margin-top: 10px;
   border-radius: 2px;
 }
@@ -78,7 +78,7 @@ body {
   display: block;
   width: 52px;
   height: 3px;
-  background: linear-gradient(90deg, #F5A623, #1A5EAB);
+  background: linear-gradient(90deg, #F47920, #1B72B8);
   margin: 10px auto 0;
   border-radius: 2px;
 }
@@ -86,7 +86,7 @@ body {
 /* ── Industrial grid background ── */
 .hero-grid {
   background-image:
-    linear-gradient(rgba(26, 94, 171, 0.18) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(26, 94, 171, 0.18) 1px, transparent 1px);
+    linear-gradient(rgba(27, 114, 184, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 114, 184, 0.18) 1px, transparent 1px);
   background-size: 55px 55px;
 }
