@@ -2,25 +2,91 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0F172A;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-rajdhani);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm-sans, "DM Sans", sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #0F172A; }
+::-webkit-scrollbar-thumb { background: #1A5EAB; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #F5A623; }
+
+/* ── Animations ── */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+
+.animate-spin-slow   { animation: spin-slow 18s linear infinite; }
+.animate-fade-in-up  { animation: fade-in-up 0.7s ease-out both; }
+.animate-fade-in     { animation: fade-in 1s ease-out both; }
+.animate-pulse-dot   { animation: pulse-dot 1.5s ease-in-out infinite; }
+
+/* Staggered hero children */
+.hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.25s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.4s; }
+.hero-content > *:nth-child(4) { animation-delay: 0.55s; }
+
+/* ── Section title accent underline ── */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 52px;
+  height: 3px;
+  background: linear-gradient(90deg, #F5A623, #1A5EAB);
+  margin-top: 10px;
+  border-radius: 2px;
+}
+.section-title-center::after {
+  content: '';
+  display: block;
+  width: 52px;
+  height: 3px;
+  background: linear-gradient(90deg, #F5A623, #1A5EAB);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* ── Industrial grid background ── */
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(26, 94, 171, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 94, 171, 0.18) 1px, transparent 1px);
+  background-size: 55px 55px;
 }
