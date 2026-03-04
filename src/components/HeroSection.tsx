@@ -81,12 +81,16 @@ const GEARS = [
   { cx: 360, cy: 580, outerR: 40,  innerR: 28,  teeth: 8,  cls: "g-sm2",   origin: "360px 580px", anim: "gSpinCCW 6s"  },
 ];
 
-// ─── Component ────────────────────────────────────────────────────────────────
-interface HeroSectionProps {
-  onScrollTo: (id: string) => void;
-}
+// Precompute static gear paths once at module level (avoid recalculating on every render)
+const GEAR_PATHS = GEARS.map(({ cx, cy, outerR, innerR, teeth }) =>
+  makeGearPath(cx, cy, outerR, innerR, teeth)
+);
 
-export default function HeroSection({ onScrollTo }: HeroSectionProps) {
+// ─── Component ────────────────────────────────────────────────────────────────
+export default function HeroSection() {
+  const onScrollTo = useCallback((id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  }, []);
   const [activeSlide, setActiveSlide] = useState(0);
   const [counted,     setCounted    ] = useState(false);
 
@@ -445,10 +449,10 @@ export default function HeroSection({ onScrollTo }: HeroSectionProps) {
             </g>
 
             {/* ── Gears ── */}
-            {GEARS.map(({ cx, cy, outerR, innerR, teeth, cls }) => (
+            {GEARS.map(({ cx, cy, outerR, innerR, cls }, gi) => (
               <g key={cls} className={cls}>
                 <path
-                  d={makeGearPath(cx, cy, outerR, innerR, teeth)}
+                  d={GEAR_PATHS[gi]}
                   fill="rgba(10,18,30,0.96)"
                   stroke="rgba(255,107,26,0.5)"
                   strokeWidth="1.5"

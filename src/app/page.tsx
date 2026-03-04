@@ -1,26 +1,15 @@
-﻿"use client";
-
-import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import NavbarClient from "@/components/NavbarClient";
 import HeroSection from "@/components/HeroSection";
 
+const PortfolioSection = dynamic(() => import("@/components/PortfolioSection"));
+const ContactForm = dynamic(() => import("@/components/ContactForm"));
+
 // ─────────────────────────────────────────────
-// SVG Icon Components
+// SVG Icon Components (server-renderable)
 // ─────────────────────────────────────────────
 
-function IconMenu({ className = "w-6 h-6" }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24">
-      <path d="M3 6h18M3 12h18M3 18h18" />
-    </svg>
-  );
-}
-function IconClose({ className = "w-6 h-6" }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24">
-      <path d="M18 6L6 18M6 6l12 12" />
-    </svg>
-  );
-}
 function IconGear({ className = "w-10 h-10" }: { className?: string }) {
   return (
     <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
@@ -29,7 +18,6 @@ function IconGear({ className = "w-10 h-10" }: { className?: string }) {
     </svg>
   );
 }
-
 function IconAward({ className = "w-8 h-8" }: { className?: string }) {
   return (
     <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" viewBox="0 0 24 24">
@@ -116,26 +104,26 @@ function IconCheckCircle({ className = "w-6 h-6" }: { className?: string }) {
 // ─────────────────────────────────────────────
 
 const NAV_LINKS = [
-  { label: "Home", href: "home" },
-  { label: "About", href: "about" },
-  { label: "Industries", href: "industries" },
+  { label: "Home",         href: "home"         },
+  { label: "About",        href: "about"        },
+  { label: "Industries",   href: "industries"   },
   { label: "Capabilities", href: "capabilities" },
-  { label: "Machinery", href: "machinery" },
-  { label: "Quality", href: "quality" },
-  { label: "Why Us", href: "why-us" },
-  { label: "Portfolio", href: "portfolio" },
-  { label: "Contact", href: "contact" },
+  { label: "Machinery",    href: "machinery"    },
+  { label: "Quality",      href: "quality"      },
+  { label: "Why Us",       href: "why-us"       },
+  { label: "Portfolio",    href: "portfolio"    },
+  { label: "Contact",      href: "contact"      },
 ];
 
 const INDUSTRIES = [
-  { name: "Automation", desc: "Precision components for automation systems.", img: "/indus-automation.jpeg" },
-  { name: "Wind Energy", desc: "High-precision parts for wind turbine applications.", img: "/indus-windenergy.jpeg" },
-  { name: "Jigs & Fixtures", desc: "Custom jigs and fixtures for manufacturing processes.", img: "/indus-jigs.jpeg" },
-  { name: "Precision Surface Grinding", desc: "Components requiring precise surface grinding.", img: "/indus-precision.jpeg" },
-  { name: "Oil & Gas", desc: "Durable components for the oil and gas industry.", img: "/indus-oilgas.jpeg" },
-  { name: "Valve Components", desc: "Precision-engineered valve components.", img: "/indus-value.jpeg" },
-  { name: "Aerospace", desc: "High-precision parts for aerospace applications.", img: "/indus-aerospace.jpeg" },
-  { name: "Automobiles", desc: "Precision components for automobile parts.", img: "/indus-automobiles.jpeg" },
+  { name: "Automation",                  desc: "Precision components for automation systems.",              img: "/indus-automation.jpeg"  },
+  { name: "Wind Energy",                 desc: "High-precision parts for wind turbine applications.",       img: "/indus-windenergy.jpeg"  },
+  { name: "Jigs & Fixtures",             desc: "Custom jigs and fixtures for manufacturing processes.",     img: "/indus-jigs.jpeg"        },
+  { name: "Precision Surface Grinding",  desc: "Components requiring precise surface grinding.",           img: "/indus-precision.jpeg"   },
+  { name: "Oil & Gas",                   desc: "Durable components for the oil and gas industry.",         img: "/indus-oilgas.jpeg"      },
+  { name: "Valve Components",            desc: "Precision-engineered valve components.",                   img: "/indus-value.jpeg"       },
+  { name: "Aerospace",                   desc: "High-precision parts for aerospace applications.",         img: "/indus-aerospace.jpeg"   },
+  { name: "Automobiles",                 desc: "Precision components for automobile parts.",               img: "/indus-automobiles.jpeg" },
 ];
 
 const CAPABILITIES = [
@@ -179,10 +167,10 @@ const MACHINERY_CATEGORIES = [
     desc: "High-precision vertical machining centers for complex multi-axis milling operations with exceptional positional accuracy.",
     color: "#1B72B8",
     machines: [
-      { no: 1, name: "VMC", make: "COSMOS CVM 800",     size: "800 × 500 × 500 mm",  qty: 7 },
-      { no: 2, name: "VMC", make: "COSMOS CVM 1160",    size: "1100 × 650 × 600 mm", qty: 4 },
-      { no: 3, name: "VMC", make: "BFW MODEL – BMV-70", size: "1600 × 840 × 800 mm", qty: 1 },
-      { no: 4, name: "VMC", make: "HURCO VMX-42",       size: "1060 × 610 × 600 mm", qty: 1 },
+      { no: 1,  name: "VMC", make: "COSMOS CVM 800",     size: "800 × 500 × 500 mm",  qty: 7 },
+      { no: 2,  name: "VMC", make: "COSMOS CVM 1160",    size: "1100 × 650 × 600 mm", qty: 4 },
+      { no: 3,  name: "VMC", make: "BFW MODEL – BMV-70", size: "1600 × 840 × 800 mm", qty: 1 },
+      { no: 4,  name: "VMC", make: "HURCO VMX-42",       size: "1060 × 610 × 600 mm", qty: 1 },
     ],
   },
   {
@@ -192,11 +180,11 @@ const MACHINERY_CATEGORIES = [
     desc: "Precision CNC turning centers and HMI-controlled surface grinding machines delivering superior flatness and finish quality.",
     color: "#F47920",
     machines: [
-      { no: 5, name: "CNC Turning",    make: "LMW LL 20T L5",              size: "Dia. 250 × 500 mm L",  qty: 1 },
-      { no: 6, name: "Surface Grinding", make: "LIVNICA KIKINDA – YUGOSLAVIA", size: "1500 × 600 × 500 mm", qty: 1 },
-      { no: 7, name: "Surface Grinding", make: "COSMOS",                      size: "1000 × 500 × 400 mm", qty: 1 },
-      { no: 8, name: "Surface Grinding", make: "ELB",                         size: "1000 × 350 × 400 mm", qty: 1 },
-      { no: 9, name: "Surface Grinding", make: "HITACHI – JAPAN",             size: "1000 × 300 × 300 mm", qty: 1 },
+      { no: 5,  name: "CNC Turning",     make: "LMW LL 20T L5",              size: "Dia. 250 × 500 mm L",  qty: 1 },
+      { no: 6,  name: "Surface Grinding", make: "LIVNICA KIKINDA – YUGOSLAVIA", size: "1500 × 600 × 500 mm", qty: 1 },
+      { no: 7,  name: "Surface Grinding", make: "COSMOS",                      size: "1000 × 500 × 400 mm", qty: 1 },
+      { no: 8,  name: "Surface Grinding", make: "ELB",                         size: "1000 × 350 × 400 mm", qty: 1 },
+      { no: 9,  name: "Surface Grinding", make: "HITACHI – JAPAN",             size: "1000 × 300 × 300 mm", qty: 1 },
     ],
   },
   {
@@ -206,68 +194,30 @@ const MACHINERY_CATEGORIES = [
     desc: "Versatile DRO-equipped and conventional milling machines for precise and repeatable component manufacture.",
     color: "#10B981",
     machines: [
-      { no: 10, name: "M1TR DRO Milling",  make: "ESTEEM – TAIWAN",      size: "850 × 400 × 300 mm",  qty: 4 },
-      { no: 11, name: "Vertical Milling",  make: "OKK – Japan",          size: "1000 × 450 × 400 mm", qty: 1 },
-      { no: 12, name: "Universal Milling", make: "HMT",                  size: "1000 × 450 × 400 mm", qty: 1 },
-      { no: 13, name: "Horizontal Milling",make: "TOYODA – JAPAN",       size: "800 × 400 × 350 mm",  qty: 1 },
-      { no: 14, name: "Vertical Milling",  make: "HOWA SANGYO – JAPAN",  size: "700 × 350 × 300 mm",  qty: 1 },
+      { no: 10, name: "M1TR DRO Milling",   make: "ESTEEM – TAIWAN",     size: "850 × 400 × 300 mm",  qty: 4 },
+      { no: 11, name: "Vertical Milling",    make: "OKK – Japan",         size: "1000 × 450 × 400 mm", qty: 1 },
+      { no: 12, name: "Universal Milling",   make: "HMT",                 size: "1000 × 450 × 400 mm", qty: 1 },
+      { no: 13, name: "Horizontal Milling",  make: "TOYODA – JAPAN",      size: "800 × 400 × 350 mm",  qty: 1 },
+      { no: 14, name: "Vertical Milling",    make: "HOWA SANGYO – JAPAN", size: "700 × 350 × 300 mm",  qty: 1 },
     ],
   },
 ];
 
 const QUALITY_INSTRUMENTS = [
-  {
-    name: "Plain & Thread Plug Gauges",
-    desc: "Used to check the lower size limit of a hole. Precise and reliable accuracy of internal threads — essential for all threaded parts.",
-  },
-  {
-    name: "Micrometers",
-    desc: "Standard & Digital options for fine measurements (0–150 mm) with superior repeatability and accuracy.",
-  },
-  {
-    name: "2D Height Master",
-    desc: "For calibrating and inspecting vertical measurements. High precision guaranteed across all setups.",
-  },
-  {
-    name: "Surface Table",
-    desc: "Provides a flat reference plane for dimensional measurement and inspection of all machined components.",
-  },
-  {
-    name: "Digital Calipers",
-    desc: "Versatile tool for measuring internal and external dimensions with instant digital accuracy readout.",
-  },
-  {
-    name: "Bore Dial Gauges",
-    desc: "Ensuring internal bore precision across a measurement range of 6–150 mm.",
-  },
+  { name: "Plain & Thread Plug Gauges", desc: "Used to check the lower size limit of a hole. Precise and reliable accuracy of internal threads — essential for all threaded parts." },
+  { name: "Micrometers",                desc: "Standard & Digital options for fine measurements (0–150 mm) with superior repeatability and accuracy." },
+  { name: "2D Height Master",           desc: "For calibrating and inspecting vertical measurements. High precision guaranteed across all setups." },
+  { name: "Surface Table",              desc: "Provides a flat reference plane for dimensional measurement and inspection of all machined components." },
+  { name: "Digital Calipers",           desc: "Versatile tool for measuring internal and external dimensions with instant digital accuracy readout." },
+  { name: "Bore Dial Gauges",           desc: "Ensuring internal bore precision across a measurement range of 6–150 mm." },
 ];
 
 const WHY_CHOOSE = [
-  {
-    title: "Deep Industry Expertise",
-    desc: "Decades of hands-on experience in precision machining across diverse industrial sectors.",
-    Icon: IconAward,
-  },
-  {
-    title: "Advanced Technology",
-    desc: "Cutting-edge CNC & VMC machines from global manufacturers ensure exceptional accuracy.",
-    Icon: IconCpu,
-  },
-  {
-    title: "Uncompromising Quality",
-    desc: "Rigorous multi-stage inspections with calibrated instruments guarantee defect-free components.",
-    Icon: IconShield,
-  },
-  {
-    title: "Customized Solutions",
-    desc: "Tailored machining solutions precisely engineered to meet your unique production requirements.",
-    Icon: IconSettings,
-  },
-  {
-    title: "On-Time Delivery",
-    desc: "Streamlined production workflow ensures consistent, reliable on-time project completion.",
-    Icon: IconClock,
-  },
+  { title: "Deep Industry Expertise",    desc: "Decades of hands-on experience in precision machining across diverse industrial sectors.",                            Icon: IconAward    },
+  { title: "Advanced Technology",        desc: "Cutting-edge CNC & VMC machines from global manufacturers ensure exceptional accuracy.",                             Icon: IconCpu      },
+  { title: "Uncompromising Quality",     desc: "Rigorous multi-stage inspections with calibrated instruments guarantee defect-free components.",                     Icon: IconShield   },
+  { title: "Customized Solutions",       desc: "Tailored machining solutions precisely engineered to meet your unique production requirements.",                     Icon: IconSettings },
+  { title: "On-Time Delivery",           desc: "Streamlined production workflow ensures consistent, reliable on-time project completion.",                           Icon: IconClock    },
 ];
 
 const PORTFOLIO_IMAGES = [
@@ -318,239 +268,18 @@ const PORTFOLIO_IMAGES = [
 const DISPLAY = { fontFamily: "var(--font-rajdhani)", textWrap: "balance" as const } as const;
 
 // ─────────────────────────────────────────────
-// Contact Form
-// ─────────────────────────────────────────────
-function ContactForm() {
-  const [fields, setFields] = useState({ name: "", company: "", email: "", phone: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-  const [errorMsg, setErrorMsg] = useState("");
-
-  const inputClass = "w-full px-4 py-3 rounded-lg border border-[#B4CCDE] text-[#0C1826] placeholder-[#7698B0] focus:outline-none focus:ring-2 focus:ring-[#1B72B8]/50 focus:border-[#1B72B8] text-sm transition-colors";
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setStatus("sending");
-    setErrorMsg("");
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(fields),
-    });
-    if (res.ok) {
-      setStatus("success");
-      setFields({ name: "", company: "", email: "", phone: "", message: "" });
-    } else {
-      const data = await res.json().catch(() => ({}));
-      setErrorMsg(data.error || "Something went wrong. Please try again.");
-      setStatus("error");
-    }
-  }
-
-  if (status === "success") {
-    return (
-      <div className="flex flex-col items-center justify-center py-16 text-center space-y-3">
-        <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center">
-          <svg className="w-7 h-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <p className="text-[#2A4262] font-semibold text-lg">Message sent!</p>
-        <p className="text-[#7698B0] text-sm">We&apos;ll get back to you within 24 business hours.</p>
-        <button onClick={() => setStatus("idle")} className="mt-2 text-sm text-[#1B72B8] underline underline-offset-2">
-          Send another message
-        </button>
-      </div>
-    );
-  }
-
-  return (
-    <form className="space-y-5" onSubmit={handleSubmit}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <div>
-          <label htmlFor="name" className="block text-sm font-semibold text-[#2A4262] mb-1.5">
-            Full Name <span className="text-[#F47920]">*</span>
-          </label>
-          <input id="name" type="text" required autoComplete="name" placeholder="Your full name…"
-            className={inputClass} value={fields.name}
-            onChange={(e) => setFields((f) => ({ ...f, name: e.target.value }))} />
-        </div>
-        <div>
-          <label htmlFor="company" className="block text-sm font-semibold text-[#2A4262] mb-1.5">Company</label>
-          <input id="company" type="text" autoComplete="organization" placeholder="Your company…"
-            className={inputClass} value={fields.company}
-            onChange={(e) => setFields((f) => ({ ...f, company: e.target.value }))} />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <div>
-          <label htmlFor="email" className="block text-sm font-semibold text-[#2A4262] mb-1.5">
-            Email <span className="text-[#F47920]">*</span>
-          </label>
-          <input id="email" type="email" required autoComplete="email" spellCheck={false} placeholder="your@email.com…"
-            className={inputClass} value={fields.email}
-            onChange={(e) => setFields((f) => ({ ...f, email: e.target.value }))} />
-        </div>
-        <div>
-          <label htmlFor="phone" className="block text-sm font-semibold text-[#2A4262] mb-1.5">Phone</label>
-          <input id="phone" type="tel" autoComplete="tel" placeholder="+91 00000 00000…"
-            className={inputClass} value={fields.phone}
-            onChange={(e) => setFields((f) => ({ ...f, phone: e.target.value }))} />
-        </div>
-      </div>
-
-      <div>
-        <label htmlFor="message" className="block text-sm font-semibold text-[#2A4262] mb-1.5">
-          Message <span className="text-[#F47920]">*</span>
-        </label>
-        <textarea id="message" rows={6} required placeholder="Describe your machining requirements, material, quantity, tolerances…"
-          className={`${inputClass} resize-none`} value={fields.message}
-          onChange={(e) => setFields((f) => ({ ...f, message: e.target.value }))} />
-      </div>
-
-      {status === "error" && (
-        <p className="text-sm text-red-600">{errorMsg}</p>
-      )}
-
-      <button type="submit" disabled={status === "sending"}
-        className="w-full py-4 bg-[#F47920] text-[#071523] font-bold rounded-lg hover:bg-[#D36410] transition-all duration-200 hover:shadow-xl hover:shadow-[#F47920]/20 text-base tracking-wider disabled:opacity-60 disabled:cursor-not-allowed"
-        style={DISPLAY}>
-        {status === "sending" ? "SENDING…" : "SEND MESSAGE"}
-      </button>
-      <p className="text-center text-xs text-[#7698B0]">We respond within 24 business hours.</p>
-    </form>
-  );
-}
-
-// ─────────────────────────────────────────────
-// Main Page
+// Main Page (Server Component)
 // ─────────────────────────────────────────────
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [portfolioOpen, setPortfolioOpen] = useState<number | null>(null);
-  const [showAllPortfolio, setShowAllPortfolio] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    if (portfolioOpen === null) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setPortfolioOpen(null);
-      if (e.key === "ArrowRight") setPortfolioOpen((i) => i !== null ? (i + 1) % PORTFOLIO_IMAGES.length : null);
-      if (e.key === "ArrowLeft") setPortfolioOpen((i) => i !== null ? (i - 1 + PORTFOLIO_IMAGES.length) % PORTFOLIO_IMAGES.length : null);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [portfolioOpen]);
-
-  const scrollTo = (id: string) => {
-    setMenuOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <>
-      {/* ══════════════════════════════════════════
-          NAVBAR
-      ══════════════════════════════════════════ */}
-      <nav
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-[#071523]/95 backdrop-blur-md shadow-xl shadow-black/40 border-b border-white/5"
-            : "bg-transparent"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo */}
-            <a
-              href="#home"
-              onClick={(e) => { e.preventDefault(); scrollTo("home"); }}
-              aria-label="GreenMech Automation – home"
-              className="flex items-center gap-2.5 group"
-            >
-              <img src="/greenmach-logo.png" alt="GreenMech Automation logo" width={40} height={40} fetchPriority="high" className="w-10 h-10 shrink-0 object-contain" />
-              <div className="text-left leading-tight">
-                <span
-                  className="block text-[#1B72B8] font-bold text-base"
-                  style={DISPLAY}
-                >
-                  GreenMech
-                </span>
-                <span className="block text-[#F47920] text-[11px] font-medium tracking-widest uppercase">
-                  Automation
-                </span>
-              </div>
-            </a>
-
-            {/* Desktop Nav */}
-            <div className="hidden lg:flex items-center gap-0.5">
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={`#${link.href}`}
-                  onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                  className="px-3.5 py-2 text-sm text-white/75 hover:text-[#F47920] transition-colors duration-200 font-medium tracking-wide"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <a
-                href="#contact"
-                onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}
-                className="ml-4 px-5 py-2.5 bg-[#F47920] text-[#071523] text-sm font-bold rounded-lg hover:bg-[#D36410] transition-colors duration-200 tracking-wider"
-                style={DISPLAY}
-              >
-                GET A QUOTE
-              </a>
-            </div>
-
-            {/* Mobile Toggle */}
-            <button
-              className="lg:hidden text-white p-1.5"
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Toggle menu"
-            >
-              {menuOpen ? <IconClose /> : <IconMenu />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {menuOpen && (
-          <div className="lg:hidden bg-[#071523]/98 backdrop-blur-md border-t border-white/10 px-5 pb-5">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={`#${link.href}`}
-                onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                className="block w-full text-left py-3.5 text-white/75 hover:text-[#F47920] transition-colors border-b border-white/5 text-sm font-medium"
-              >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="#contact"
-              onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}
-              className="mt-5 block w-full text-center py-3.5 bg-[#F47920] text-[#071523] font-bold rounded-lg text-sm tracking-wider"
-              style={DISPLAY}
-            >
-              GET A QUOTE
-            </a>
-          </div>
-        )}
-      </nav>
+      <NavbarClient />
 
       <main>
         {/* ══════════════════════════════════════════
             HERO
         ══════════════════════════════════════════ */}
-        <HeroSection onScrollTo={scrollTo} />
+        <HeroSection />
 
         {/* ══════════════════════════════════════════
             ABOUT
@@ -574,76 +303,44 @@ export default function Home() {
                   <div className="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-[#F47920] rounded-tl-2xl" />
                   <div className="absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-[#1B72B8] rounded-br-2xl" />
                 </div>
-
-                {/* Floating badge */}
                 <div className="absolute -bottom-6 -right-4 sm:-right-6 bg-[#1B72B8] text-white rounded-xl px-5 py-3.5 shadow-2xl shadow-[#1B72B8]/30">
-                  <div className="text-[10px] text-white/60 uppercase tracking-widest mb-0.5">
-                    Certified
-                  </div>
-                  <div
-                    className="font-bold text-lg leading-tight"
-                    style={DISPLAY}
-                  >
-                    ISO 9001
-                  </div>
-                  <div className="text-[11px] text-[#F47920] font-medium">
-                    TUV India
-                  </div>
+                  <div className="text-[10px] text-white/60 uppercase tracking-widest mb-0.5">Certified</div>
+                  <div className="font-bold text-lg leading-tight" style={DISPLAY}>ISO 9001</div>
+                  <div className="text-[11px] text-[#F47920] font-medium">TUV India</div>
                 </div>
               </div>
 
               {/* Content */}
               <div className="lg:pl-4">
-                <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">
-                  Who We Are
-                </p>
-                <h2
-                  className="text-4xl lg:text-5xl font-bold text-[#0C1826] mb-6 section-title"
-                  style={DISPLAY}
-                >
-                  Premier Precision
-                  <br />
-                  Machining Solutions
+                <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">Who We Are</p>
+                <h2 className="text-4xl lg:text-5xl font-bold text-[#0C1826] mb-6 section-title" style={DISPLAY}>
+                  Premier Precision<br />Machining Solutions
                 </h2>
                 <p className="text-[#385578] leading-relaxed mb-5 text-lg">
-                  GreenMech Automation is a premier provider of precision
-                  machining solutions specializing in CNC, VMC, and surface
-                  grinding. Our expertise extends across multiple industries,
-                  delivering high-precision components with a commitment to
-                  quality and efficiency.
+                  GreenMech Automation is a premier provider of precision machining solutions specializing in CNC, VMC, and
+                  surface grinding. Our expertise extends across multiple industries, delivering high-precision components with
+                  a commitment to quality and efficiency.
                 </p>
                 <p className="text-[#4A6B8C] leading-relaxed mb-8">
-                  Based in Coimbatore — India&apos;s precision machining hub —
-                  we combine decades of hands-on expertise with cutting-edge
-                  machinery from world-class manufacturers to serve clients in
-                  aerospace, oil &amp; gas, wind energy, automobiles, and more.
+                  Based in Coimbatore — India&apos;s precision machining hub — we combine decades of hands-on expertise with
+                  cutting-edge machinery from world-class manufacturers to serve clients in aerospace, oil &amp; gas, wind
+                  energy, automobiles, and more.
                 </p>
-
-                {/* Info grid */}
                 <div className="grid grid-cols-2 gap-3 mb-8">
                   {[
-                    ["GSTIN", "33AAXFG6115F1ZC"],
-                    ["Location", "Coimbatore, Tamil Nadu"],
+                    ["GSTIN",          "33AAXFG6115F1ZC"],
+                    ["Location",       "Coimbatore, Tamil Nadu"],
                     ["Specialization", "CNC · VMC · Grinding"],
-                    ["Certification", "ISO 9001 – TUV India"],
+                    ["Certification",  "ISO 9001 – TUV India"],
                   ].map(([label, value]) => (
-                    <div
-                      key={label}
-                      className="bg-[#EFF7FF] rounded-lg p-3.5 border border-[#C4D9EE]"
-                    >
-                      <div className="text-[10px] text-[#6888AA] uppercase tracking-widest mb-1">
-                        {label}
-                      </div>
-                      <div className="text-sm font-semibold text-[#1A2C40]">
-                        {value}
-                      </div>
+                    <div key={label} className="bg-[#EFF7FF] rounded-lg p-3.5 border border-[#C4D9EE]">
+                      <div className="text-[10px] text-[#6888AA] uppercase tracking-widest mb-1">{label}</div>
+                      <div className="text-sm font-semibold text-[#1A2C40]">{value}</div>
                     </div>
                   ))}
                 </div>
-
                 <a
                   href="#contact"
-                  onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-[#0C1826] text-white font-semibold rounded-lg hover:bg-[#1B72B8] transition-colors duration-200 text-sm"
                 >
                   Get in Touch →
@@ -659,44 +356,33 @@ export default function Home() {
         <section id="industries" className="py-24 bg-[#EFF7FF]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-14">
-              <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">
-                Our Reach
-              </p>
-              <h2
-                className="text-4xl lg:text-5xl font-bold text-[#0C1826] section-title-center"
-                style={DISPLAY}
-              >
+              <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">Our Reach</p>
+              <h2 className="text-4xl lg:text-5xl font-bold text-[#0C1826] section-title-center" style={DISPLAY}>
                 Industries We Serve
               </h2>
               <p className="mt-6 text-[#4A6B8C] max-w-xl mx-auto">
-                Precision-engineered components for demanding sectors — each
-                with unique tolerances and zero room for error.
+                Precision-engineered components for demanding sectors — each with unique tolerances and zero room for error.
               </p>
             </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {INDUSTRIES.map(({ name, desc, img }, i) => (
+              {INDUSTRIES.map(({ name, desc, img }) => (
                 <div
-                  key={i}
+                  key={name}
                   className="bg-white rounded-xl overflow-hidden border border-[#C4D9EE] shadow-sm hover:shadow-lg hover:-translate-y-1.5 transition-[transform,box-shadow] duration-300 group"
                 >
                   <div className="relative aspect-video overflow-hidden">
-                    <img
+                    <Image
                       src={img}
                       alt={`${name} precision components – GreenMech Automation`}
                       width={400}
                       height={225}
                       loading="lazy"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                   <div className="p-5">
-                    <h3
-                      className="font-bold text-[#0C1826] mb-1.5 text-base leading-tight"
-                      style={DISPLAY}
-                    >
-                      {name}
-                    </h3>
+                    <h3 className="font-bold text-[#0C1826] mb-1.5 text-base leading-tight" style={DISPLAY}>{name}</h3>
                     <p className="text-[#4A6B8C] text-sm leading-relaxed">{desc}</p>
                   </div>
                 </div>
@@ -711,57 +397,40 @@ export default function Home() {
         <section id="capabilities" className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-14">
-              <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">
-                What We Do
-              </p>
-              <h2
-                className="text-4xl lg:text-5xl font-bold text-[#0C1826] section-title-center"
-                style={DISPLAY}
-              >
+              <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">What We Do</p>
+              <h2 className="text-4xl lg:text-5xl font-bold text-[#0C1826] section-title-center" style={DISPLAY}>
                 Our Capabilities
               </h2>
               <p className="mt-6 text-[#4A6B8C] max-w-xl mx-auto">
-                State-of-the-art machining capabilities with precise
-                specifications to handle any production requirement.
+                State-of-the-art machining capabilities with precise specifications to handle any production requirement.
               </p>
             </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {CAPABILITIES.map((cap, i) => (
+              {CAPABILITIES.map((cap) => (
                 <div
-                  key={i}
+                  key={cap.name}
                   className="rounded-xl overflow-hidden border border-[#C4D9EE] hover:shadow-xl hover:-translate-y-1.5 transition-[transform,box-shadow] duration-300 group bg-white"
                 >
-                  {/* Image */}
                   <div className="relative aspect-video overflow-hidden">
-                    <img
+                    <Image
                       src={cap.img}
                       alt={`${cap.name} – GreenMech Automation Coimbatore`}
                       width={600}
                       height={338}
                       loading="lazy"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    {/* Title overlay */}
                     <div className="absolute inset-0 bg-linear-to-t from-[#0C1826]/80 via-transparent to-transparent" />
-                    <h3
-                      className="absolute bottom-0 left-0 right-0 px-5 py-4 text-white font-bold text-xl leading-tight"
-                      style={DISPLAY}
-                    >
+                    <h3 className="absolute bottom-0 left-0 right-0 px-5 py-4 text-white font-bold text-xl leading-tight" style={DISPLAY}>
                       {cap.name}
                     </h3>
                   </div>
-                  {/* Body */}
                   <div className="p-6">
-                    <p className="text-[#4A6B8C] text-sm mb-5 leading-relaxed">
-                      {cap.desc}
-                    </p>
+                    <p className="text-[#4A6B8C] text-sm mb-5 leading-relaxed">{cap.desc}</p>
                     <div className="space-y-2.5">
-                      {cap.specs.map((spec, j) => (
-                        <div
-                          key={j}
-                          className="flex items-center gap-2.5"
-                        >
+                      {cap.specs.map((spec) => (
+                        <div key={spec} className="flex items-center gap-2.5">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#F47920] shrink-0" />
                           <span className="font-mono text-xs text-[#2A4262]">{spec}</span>
                         </div>
@@ -779,26 +448,19 @@ export default function Home() {
         ══════════════════════════════════════════ */}
         <section id="machinery" className="py-24 bg-[#071523]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Header */}
             <div className="text-center mb-16">
-              <p className="text-[#F47920] text-xs font-bold tracking-widest uppercase mb-3">
-                Our Fleet
-              </p>
-              <h2
-                className="text-4xl lg:text-5xl font-bold text-white section-title-center"
-                style={DISPLAY}
-              >
+              <p className="text-[#F47920] text-xs font-bold tracking-widest uppercase mb-3">Our Fleet</p>
+              <h2 className="text-4xl lg:text-5xl font-bold text-white section-title-center" style={DISPLAY}>
                 Machinery Showroom
               </h2>
               <p className="mt-6 text-white/45 max-w-xl mx-auto">
-                A comprehensive fleet of precision machines sourced from
-                world-class global manufacturers.
+                A comprehensive fleet of precision machines sourced from world-class global manufacturers.
               </p>
               <div className="flex items-center justify-center gap-10 mt-8">
                 {[
-                  { value: "14", label: "Machine Models" },
-                  { value: "26+", label: "Total Units" },
-                  { value: "3",  label: "Categories" },
+                  { value: "14",  label: "Machine Models" },
+                  { value: "26+", label: "Total Units"    },
+                  { value: "3",   label: "Categories"     },
                 ].map((s) => (
                   <div key={s.label}>
                     <div className="text-2xl font-bold text-[#F47920]" style={DISPLAY}>{s.value}</div>
@@ -808,15 +470,11 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Categories */}
             <div className="space-y-14">
               {MACHINERY_CATEGORIES.map((cat, ci) => (
                 <div key={cat.id}>
-                  {/* ── Hero Banner ── */}
                   <div className="relative rounded-2xl overflow-hidden mb-5 h-44 sm:h-52">
-                    {/* Base gradient */}
                     <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #071523 0%, #0C1E32 100%)" }} />
-                    {/* Grid overlay */}
                     <div
                       className="absolute inset-0"
                       style={{
@@ -824,18 +482,14 @@ export default function Home() {
                         backgroundSize: "32px 32px",
                       }}
                     />
-                    {/* Color glow */}
                     <div className="absolute -right-16 -top-16 w-72 h-72 rounded-full blur-3xl opacity-20" style={{ background: cat.color }} />
-                    {/* Bottom accent line */}
                     <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: `linear-gradient(90deg, ${cat.color} 0%, transparent 60%)` }} />
-                    {/* Watermark */}
                     <div
                       className="absolute right-6 top-1/2 -translate-y-1/2 font-black select-none leading-none"
                       style={{ ...DISPLAY, color: "rgba(255,255,255,0.04)", fontSize: "clamp(56px, 9vw, 108px)" }}
                     >
                       {cat.watermark}
                     </div>
-                    {/* Content */}
                     <div className="relative z-10 flex items-center h-full px-7 sm:px-10">
                       <div className="flex-1 pr-4">
                         <div className="flex items-center gap-2 mb-3">
@@ -849,9 +503,7 @@ export default function Home() {
                             Machine Category
                           </span>
                         </div>
-                        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 leading-tight" style={DISPLAY}>
-                          {cat.label}
-                        </h3>
+                        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 leading-tight" style={DISPLAY}>{cat.label}</h3>
                         <p className="text-white/40 text-sm max-w-md leading-relaxed hidden sm:block">{cat.desc}</p>
                       </div>
                       <div className="hidden sm:flex flex-col gap-4 items-end shrink-0 ml-auto">
@@ -871,14 +523,13 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* ── Horizontal Scroll Cards ── */}
                   <div
                     className="flex gap-4 overflow-x-auto pb-2"
                     style={{ scrollbarWidth: "thin", scrollbarColor: `${cat.color}50 transparent` }}
                   >
-                    {cat.machines.map((m, mi) => (
+                    {cat.machines.map((m) => (
                       <div
-                        key={mi}
+                        key={m.no}
                         className="shrink-0 w-60 rounded-xl overflow-hidden bg-[#0A1628] border border-white/8 hover:border-white/20 hover:shadow-xl transition-[border-color,box-shadow] duration-300 group flex flex-col"
                       >
                         <div className="h-1" style={{ background: cat.color }} />
@@ -886,9 +537,7 @@ export default function Home() {
                           <div className="text-[10px] font-bold tracking-[0.18em] uppercase mb-3" style={{ color: cat.color }}>
                             #{String(m.no).padStart(2, "0")}
                           </div>
-                          <h4 className="text-white font-bold text-[15px] leading-snug mb-1" style={DISPLAY}>
-                            {m.name}
-                          </h4>
+                          <h4 className="text-white font-bold text-[15px] leading-snug mb-1" style={DISPLAY}>{m.name}</h4>
                           <p className="text-white/40 text-xs leading-relaxed mb-4">{m.make}</p>
                           <div className="mt-auto pt-4 border-t border-white/8 space-y-2.5">
                             <div className="flex items-start gap-2">
@@ -932,39 +581,26 @@ export default function Home() {
         <section id="quality" className="py-24 bg-[#EFF7FF]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-14">
-              <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">
-                Quality First
-              </p>
-              <h2
-                className="text-4xl lg:text-5xl font-bold text-[#0C1826] section-title-center"
-                style={DISPLAY}
-              >
+              <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">Quality First</p>
+              <h2 className="text-4xl lg:text-5xl font-bold text-[#0C1826] section-title-center" style={DISPLAY}>
                 Inspection &amp; Quality Control
               </h2>
               <p className="mt-6 text-[#4A6B8C] max-w-xl mx-auto">
-                Our comprehensive suite of calibrated instruments ensures every
-                component meets the highest precision standards before delivery.
+                Our comprehensive suite of calibrated instruments ensures every component meets the highest precision
+                standards before delivery.
               </p>
             </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {QUALITY_INSTRUMENTS.map((inst, i) => (
+              {QUALITY_INSTRUMENTS.map((inst) => (
                 <div
-                  key={i}
+                  key={inst.name}
                   className="bg-white rounded-xl p-7 border border-[#C4D9EE] shadow-sm hover:shadow-lg hover:-translate-y-1.5 transition-[transform,box-shadow] duration-300 group"
                 >
                   <div className="w-12 h-12 rounded-xl bg-[#E4F0FF] flex items-center justify-center mb-5 group-hover:bg-[#1B72B8] transition-[background-color] duration-300" aria-hidden="true">
                     <IconCheckCircle className="w-6 h-6 text-[#1B72B8] group-hover:text-white transition-[color] duration-300" />
                   </div>
-                  <h3
-                    className="font-bold text-[#0C1826] mb-2.5 text-lg leading-tight"
-                    style={DISPLAY}
-                  >
-                    {inst.name}
-                  </h3>
-                  <p className="text-[#4A6B8C] text-sm leading-relaxed">
-                    {inst.desc}
-                  </p>
+                  <h3 className="font-bold text-[#0C1826] mb-2.5 text-lg leading-tight" style={DISPLAY}>{inst.name}</h3>
+                  <p className="text-[#4A6B8C] text-sm leading-relaxed">{inst.desc}</p>
                 </div>
               ))}
             </div>
@@ -977,32 +613,21 @@ export default function Home() {
         <section id="why-us" className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-14">
-              <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">
-                Our Advantage
-              </p>
-              <h2
-                className="text-4xl lg:text-5xl font-bold text-[#0C1826] section-title-center"
-                style={DISPLAY}
-              >
+              <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">Our Advantage</p>
+              <h2 className="text-4xl lg:text-5xl font-bold text-[#0C1826] section-title-center" style={DISPLAY}>
                 Why Choose GreenMech?
               </h2>
             </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
-              {WHY_CHOOSE.map(({ title, desc, Icon }, i) => (
+              {WHY_CHOOSE.map(({ title, desc, Icon }) => (
                 <div
-                  key={i}
+                  key={title}
                   className="text-center px-5 py-8 rounded-xl border border-[#C4D9EE] hover:border-[#1B72B8] hover:shadow-xl hover:-translate-y-1.5 transition-[transform,box-shadow,border-color] duration-300 group"
                 >
                   <div className="w-14 h-14 rounded-2xl bg-[#E4F0FF] flex items-center justify-center mx-auto mb-5 text-[#1B72B8] group-hover:bg-[#1B72B8] group-hover:text-white transition-[background-color,color] duration-300" aria-hidden="true">
                     <Icon className="w-7 h-7" />
                   </div>
-                  <h3
-                    className="font-bold text-[#0C1826] mb-2 text-base leading-tight"
-                    style={DISPLAY}
-                  >
-                    {title}
-                  </h3>
+                  <h3 className="font-bold text-[#0C1826] mb-2 text-base leading-tight" style={DISPLAY}>{title}</h3>
                   <p className="text-[#4A6B8C] text-xs leading-relaxed">{desc}</p>
                 </div>
               ))}
@@ -1011,77 +636,9 @@ export default function Home() {
         </section>
 
         {/* ══════════════════════════════════════════
-            DESIGN PORTFOLIO
+            DESIGN PORTFOLIO (Client Component)
         ══════════════════════════════════════════ */}
-        <section id="portfolio" className="py-24 bg-[#050D16]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Header */}
-            <div className="text-center mb-16">
-              <p className="text-[#F47920] text-xs font-bold tracking-widest uppercase mb-3">
-                Our Work
-              </p>
-              <h2
-                className="text-4xl lg:text-5xl font-bold text-white section-title-center"
-                style={DISPLAY}
-              >
-                Design Portfolio
-              </h2>
-              <p className="mt-6 text-white/40 max-w-xl mx-auto">
-                A showcase of precision-machined components crafted to exacting tolerances — quality you can see.
-              </p>
-            </div>
-
-            {/* Masonry Grid */}
-            {(() => {
-              const visible = showAllPortfolio ? PORTFOLIO_IMAGES : PORTFOLIO_IMAGES.slice(0, 12);
-              return (
-                <>
-                  <div className="columns-2 sm:columns-3 lg:columns-4 gap-3 space-y-3">
-                    {visible.map((src, i) => (
-                      <button
-                        key={i}
-                        type="button"
-                        aria-label={`View portfolio image ${i + 1}`}
-                        className="block w-full break-inside-avoid relative group cursor-pointer overflow-hidden rounded-xl bg-[#0A1628]"
-                        onClick={() => setPortfolioOpen(i)}
-                      >
-                        <img
-                          src={src}
-                          alt=""
-                          width={400}
-                          height={300}
-                          className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-[background-color] duration-300 flex items-center justify-center">
-                          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
-                            <svg aria-hidden="true" className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" d="M15 3h6m0 0v6m0-6L10 14M9 3H3v18h18v-6" />
-                            </svg>
-                          </div>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-
-                  {!showAllPortfolio && PORTFOLIO_IMAGES.length > 12 && (
-                    <div className="text-center mt-12">
-                      <button
-                        onClick={() => setShowAllPortfolio(true)}
-                        className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/20 text-white/70 hover:text-white hover:border-white/50 transition-[color,border-color] duration-300 text-sm font-medium tracking-wider"
-                      >
-                        View All {PORTFOLIO_IMAGES.length} Photos
-                        <svg aria-hidden="true" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-                    </div>
-                  )}
-                </>
-              );
-            })()}
-          </div>
-        </section>
+        <PortfolioSection images={PORTFOLIO_IMAGES} />
 
         {/* ══════════════════════════════════════════
             VALUED CUSTOMERS
@@ -1090,40 +647,23 @@ export default function Home() {
           <div className="absolute inset-0 hero-grid opacity-30" />
           <div
             className="absolute inset-0 opacity-20"
-            style={{
-              background:
-                "radial-gradient(ellipse at center, #1B72B8 0%, transparent 70%)",
-            }}
+            style={{ background: "radial-gradient(ellipse at center, #1B72B8 0%, transparent 70%)" }}
           />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-[#F47920] text-xs font-bold tracking-widest uppercase mb-3">
-              Trusted By
-            </p>
-            <h2
-              className="text-4xl lg:text-5xl font-bold text-white mb-12 section-title-center"
-              style={DISPLAY}
-            >
+            <p className="text-[#F47920] text-xs font-bold tracking-widest uppercase mb-3">Trusted By</p>
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-12 section-title-center" style={DISPLAY}>
               Our Valued Customers
             </h2>
-
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               {[
-                {
-                  src: "/teal.jpeg",
-                  alt: "TEAL – Titan Engineering & Automation Limited",
-                  label: "",
-                },
-                {
-                  src: "/indo-mim.jpeg",
-                  alt: "INDO-MIM – Complexity Simplified",
-                  label: "",
-                },
-              ].map((c, i) => (
+                { src: "/teal.jpeg",     alt: "TEAL – Titan Engineering & Automation Limited" },
+                { src: "/indo-mim.jpeg", alt: "INDO-MIM – Complexity Simplified"              },
+              ].map((c) => (
                 <div
-                  key={i}
+                  key={c.src}
                   className="bg-white backdrop-blur-sm border border-white/20 rounded-2xl px-10 py-7 text-center hover:scale-105 hover:shadow-2xl hover:shadow-black/40 transition-[transform,box-shadow] duration-300 min-w-65"
                 >
-                  <img
+                  <Image
                     src={c.src}
                     alt={c.alt}
                     width={200}
@@ -1131,7 +671,6 @@ export default function Home() {
                     loading="lazy"
                     className="h-14 w-auto mx-auto object-contain"
                   />
-                  <div className="text-[#4A6B8C] text-xs mt-3 font-medium">{c.label}</div>
                 </div>
               ))}
             </div>
@@ -1144,51 +683,30 @@ export default function Home() {
         <section id="contact" className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-14">
-              <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">
-                Reach Out
-              </p>
-              <h2
-                className="text-4xl lg:text-5xl font-bold text-[#0C1826] section-title-center"
-                style={DISPLAY}
-              >
+              <p className="text-[#1B72B8] text-xs font-bold tracking-widest uppercase mb-3">Reach Out</p>
+              <h2 className="text-4xl lg:text-5xl font-bold text-[#0C1826] section-title-center" style={DISPLAY}>
                 Contact Us
               </h2>
               <p className="mt-6 text-[#4A6B8C] max-w-md mx-auto">
-                Ready to discuss your precision machining requirements? We
-                respond within 24 hours.
+                Ready to discuss your precision machining requirements? We respond within 24 hours.
               </p>
             </div>
-
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
               {/* Info Panel */}
               <div className="bg-[#071523] rounded-2xl p-8 lg:p-10 text-white relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-48 h-48 opacity-10" style={{ background: "radial-gradient(circle, #1B72B8, transparent)" }} />
                 <div className="relative z-10">
                   <div className="mb-2">
-                    <span
-                      className="text-2xl font-bold"
-                      style={DISPLAY}
-                    >
-                      GreenMech Automation
-                    </span>
+                    <span className="text-2xl font-bold" style={DISPLAY}>GreenMech Automation</span>
                   </div>
-                  <p className="text-[#F47920] text-sm font-medium tracking-wider mb-8">
-                    Perfection in Precision
-                  </p>
-
+                  <p className="text-[#F47920] text-sm font-medium tracking-wider mb-8">Perfection in Precision</p>
                   <div className="space-y-7">
                     {[
                       {
                         Icon: IconMapPin,
                         label: "Address",
                         content: (
-                          <>
-                            No: 37, Athipalayam Road,
-                            <br />
-                            Chinnavedampatti,
-                            <br />
-                            Coimbatore, Tamil Nadu – 641049
-                          </>
+                          <>No: 37, Athipalayam Road,<br />Chinnavedampatti,<br />Coimbatore, Tamil Nadu – 641049</>
                         ),
                       },
                       {
@@ -1205,10 +723,7 @@ export default function Home() {
                         Icon: IconMail,
                         label: "Email",
                         content: (
-                          <a
-                            href="mailto:greenmechcbe@gmail.com"
-                            className="hover:text-[#F47920] transition-colors break-all"
-                          >
+                          <a href="mailto:greenmechcbe@gmail.com" className="hover:text-[#F47920] transition-colors break-all">
                             greenmechcbe@gmail.com
                           </a>
                         ),
@@ -1216,9 +731,7 @@ export default function Home() {
                       {
                         Icon: IconFileText,
                         label: "GSTIN",
-                        content: (
-                          <span className="font-mono">33AAXFG6115F1ZC</span>
-                        ),
+                        content: <span className="font-mono">33AAXFG6115F1ZC</span>,
                       },
                     ].map(({ Icon, label, content }, i) => (
                       <div key={i} className="flex gap-4">
@@ -1226,17 +739,12 @@ export default function Home() {
                           <Icon className="w-4.5 h-4.5 text-[#F47920]" />
                         </div>
                         <div>
-                          <div className="text-[10px] text-white/40 uppercase tracking-widest mb-1">
-                            {label}
-                          </div>
-                          <div className="text-white/75 text-sm leading-relaxed">
-                            {content}
-                          </div>
+                          <div className="text-[10px] text-white/40 uppercase tracking-widest mb-1">{label}</div>
+                          <div className="text-white/75 text-sm leading-relaxed">{content}</div>
                         </div>
                       </div>
                     ))}
                   </div>
-
                   <div className="mt-10 pt-8 border-t border-white/8">
                     <div className="inline-flex items-center gap-2.5 bg-[#1B72B8]/20 rounded-lg px-4 py-2.5 text-sm text-white/60">
                       <span className="w-2 h-2 bg-green-400 rounded-full" />
@@ -1246,7 +754,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Form */}
+              {/* Form (Client Component) */}
               <ContactForm />
             </div>
           </div>
@@ -1262,22 +770,14 @@ export default function Home() {
             {/* Brand */}
             <div className="md:col-span-2">
               <div className="flex items-center gap-2.5 mb-5">
-                <img src="/greenmach-logo.jpeg" alt="GreenMech logo" width={40} height={40} className="w-10 h-10 shrink-0 object-contain" />
+                <Image src="/greenmach-logo.jpeg" alt="GreenMech logo" width={40} height={40} loading="lazy" className="w-10 h-10 shrink-0 object-contain" />
                 <div>
-                  <span
-                    className="block text-white font-bold"
-                    style={DISPLAY}
-                  >
-                    GreenMech Automation
-                  </span>
-                  <span className="block text-[#F47920] text-xs font-medium tracking-wider">
-                    Perfection in Precision
-                  </span>
+                  <span className="block text-white font-bold" style={DISPLAY}>GreenMech Automation</span>
+                  <span className="block text-[#F47920] text-xs font-medium tracking-wider">Perfection in Precision</span>
                 </div>
               </div>
               <p className="text-white/40 text-sm leading-relaxed max-w-xs mb-5">
-                Premier provider of CNC, VMC &amp; surface grinding precision
-                machining from Coimbatore, Tamil Nadu, India.
+                Premier provider of CNC, VMC &amp; surface grinding precision machining from Coimbatore, Tamil Nadu, India.
               </p>
               <div className="flex items-center gap-2 text-xs text-white/30">
                 <span className="w-2 h-2 bg-green-400 rounded-full" />
@@ -1285,20 +785,14 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Quick Links */}
+            {/* Quick Links — plain anchors; CSS scroll-behavior:smooth on <html> handles animation */}
             <div>
-              <h4
-                className="text-white font-bold mb-5 text-sm tracking-widest uppercase"
-                style={DISPLAY}
-              >
-                Quick Links
-              </h4>
+              <h4 className="text-white font-bold mb-5 text-sm tracking-widest uppercase" style={DISPLAY}>Quick Links</h4>
               <ul className="space-y-2.5">
                 {NAV_LINKS.map((link) => (
                   <li key={link.href}>
                     <a
                       href={`#${link.href}`}
-                      onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
                       className="text-white/40 hover:text-[#F47920] text-sm transition-colors duration-200"
                     >
                       {link.label}
@@ -1310,115 +804,21 @@ export default function Home() {
 
             {/* Contact */}
             <div>
-              <h4
-                className="text-white font-bold mb-5 text-sm tracking-widest uppercase"
-                style={DISPLAY}
-              >
-                Contact
-              </h4>
+              <h4 className="text-white font-bold mb-5 text-sm tracking-widest uppercase" style={DISPLAY}>Contact</h4>
               <div className="space-y-3 text-sm text-white/40">
-                <p>
-                  No: 37, Athipalayam Road,
-                  <br />
-                  Chinnavedampatti,
-                  <br />
-                  Coimbatore – 641049
-                </p>
-                <p>
-                  <a
-                    href="tel:+919566657428"
-                    className="hover:text-[#F47920] transition-colors"
-                  >
-                    +91 95666 57428
-                  </a>
-                </p>
-                <p>
-                  <a
-                    href="mailto:greenmechcbe@gmail.com"
-                    className="hover:text-[#F47920] transition-colors break-all"
-                  >
-                    greenmechcbe@gmail.com
-                  </a>
-                </p>
+                <p>No: 37, Athipalayam Road,<br />Chinnavedampatti,<br />Coimbatore – 641049</p>
+                <p><a href="tel:+919566657428" className="hover:text-[#F47920] transition-colors">+91 95666 57428</a></p>
+                <p><a href="mailto:greenmechcbe@gmail.com" className="hover:text-[#F47920] transition-colors break-all">greenmechcbe@gmail.com</a></p>
               </div>
             </div>
           </div>
 
-          {/* Bottom bar */}
           <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/25">
-            <span>
-              © {new Date().getFullYear()} GreenMech Automation. All rights reserved.
-            </span>
+            <span>© {new Date().getFullYear()} GreenMech Automation. All rights reserved.</span>
             <span>Coimbatore, Tamil Nadu, India</span>
           </div>
         </div>
       </footer>
-
-      {/* ══════════════════════════════════════════
-          LIGHTBOX
-      ══════════════════════════════════════════ */}
-      {portfolioOpen !== null && (
-        <div
-          className="fixed inset-0 z-100 bg-black/95 backdrop-blur-sm flex items-center justify-center"
-          onClick={() => setPortfolioOpen(null)}
-        >
-          {/* Close */}
-          <button
-            aria-label="Close lightbox"
-            className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors z-10"
-            onClick={() => setPortfolioOpen(null)}
-          >
-            <IconClose aria-hidden className="w-5 h-5" />
-          </button>
-
-          {/* Counter */}
-          <div className="absolute top-5 left-1/2 -translate-x-1/2 text-white/40 text-xs tracking-widest font-mono">
-            {portfolioOpen + 1} / {PORTFOLIO_IMAGES.length}
-          </div>
-
-          {/* Prev */}
-          <button
-            aria-label="Previous image"
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors z-10"
-            onClick={(e) => { e.stopPropagation(); setPortfolioOpen((portfolioOpen - 1 + PORTFOLIO_IMAGES.length) % PORTFOLIO_IMAGES.length); }}
-          >
-            <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
-          </button>
-
-          {/* Image */}
-          <img
-            src={PORTFOLIO_IMAGES[portfolioOpen]}
-            alt={`Portfolio image ${portfolioOpen + 1}`}
-            width={1200}
-            height={900}
-            className="max-h-[90vh] max-w-[90vw] object-contain rounded-xl shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          />
-
-          {/* Next */}
-          <button
-            aria-label="Next image"
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors z-10"
-            onClick={(e) => { e.stopPropagation(); setPortfolioOpen((portfolioOpen + 1) % PORTFOLIO_IMAGES.length); }}
-          >
-            <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" /></svg>
-          </button>
-
-          {/* Thumbnail strip */}
-          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-1.5 overflow-x-auto max-w-[90vw] px-2 pb-1">
-            {PORTFOLIO_IMAGES.map((src, i) => (
-              <button
-                key={i}
-                aria-label={`Go to image ${i + 1}`}
-                onClick={(e) => { e.stopPropagation(); setPortfolioOpen(i); }}
-                className={`shrink-0 w-12 h-9 rounded overflow-hidden transition-opacity duration-200 ${i === portfolioOpen ? "ring-2 ring-[#F47920] opacity-100" : "opacity-40 hover:opacity-70"}`}
-              >
-                <img src={src} alt="" width={48} height={36} className="w-full h-full object-cover" />
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
     </>
   );
 }
