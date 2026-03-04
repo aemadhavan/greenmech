@@ -38,7 +38,7 @@ export const viewport: Viewport = {
 const SITE_URL = "https://greenmech.in";
 const SITE_TITLE = "GreenMech Automation | CNC & VMC Machining Coimbatore";
 const SITE_DESC =
-  "ISO 9001 certified precision machining in Coimbatore — CNC turning, VMC milling & surface grinding for aerospace, oil & gas, automotive and more. TUV India certified.";
+  "ISO 9001 certified CNC & VMC precision machining in Coimbatore — aerospace, oil & gas, automotive components. Surface grinding specialists. TUV India certified.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -125,6 +125,14 @@ const LD_JSON = {
     },
   ],
   areaServed: { "@type": "Country", name: "India" },
+  // TODO: replace # values with your actual social profile URLs
+  sameAs: [
+    "https://www.facebook.com/",       // replace with your Facebook page URL
+    "https://twitter.com/",            // replace with your X/Twitter profile URL
+    "https://www.instagram.com/",      // replace with your Instagram profile URL
+    "https://www.youtube.com/",        // replace with your YouTube channel URL
+    "https://www.linkedin.com/",       // replace with your LinkedIn page URL
+  ],
   knowsAbout: [
     "CNC Machining",
     "VMC Machining",
@@ -147,7 +155,6 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      style={{ colorScheme: "dark", scrollBehavior: "smooth" }}
       className={`${rajdhani.variable} ${dmSans.variable} ${bebasNeue.variable} ${shareTechMono.variable}`}
     >
       <body className="antialiased" suppressHydrationWarning>

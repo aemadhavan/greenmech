@@ -52,7 +52,7 @@ export default function PortfolioSection({ images }: PortfolioSectionProps) {
             >
               <Image
                 src={src}
-                alt=""
+                alt={`GreenMech Automation precision machined component ${i + 1}`}
                 width={400}
                 height={300}
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"

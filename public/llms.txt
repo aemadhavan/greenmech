@@ -1,0 +1,31 @@
+# GreenMech Automation
+
+> ISO 9001 certified precision machining company in Coimbatore, Tamil Nadu, India.
+
+GreenMech Automation is a premier provider of CNC turning, VMC milling, and surface grinding services. We serve industries including aerospace, oil & gas, wind energy, automotive, and automation. Certified by TUV India under ISO 9001.
+
+## Services
+- VMC (Vertical Machining Centre) Machining
+- CNC Turning
+- Surface Grinding with HMI
+- Heavy Rough Milling
+- M1TR DRO Milling
+
+## Industries Served
+- Aerospace
+- Oil & Gas
+- Wind Energy
+- Automobiles
+- Automation
+- Jigs & Fixtures
+- Valve Components
+- Precision Surface Grinding
+
+## Contact
+- Address: No: 37, Athipalayam Road, Chinnavedampatti, Coimbatore, Tamil Nadu – 641049, India
+- Phone: +91 95666 57428 / +91 93849 47902
+- Email: greenmechcbe@gmail.com
+- GSTIN: 33AAXFG6115F1ZC
+
+## Certifications
+- ISO 9001 (TUV India)
