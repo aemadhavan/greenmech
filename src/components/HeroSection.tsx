@@ -171,6 +171,9 @@ export default function HeroSection({ onScrollTo }: HeroSectionProps) {
       raf = requestAnimationFrame(draw);
     };
 
+    // Respect prefers-reduced-motion
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     // Defer init one frame so layout is complete
     requestAnimationFrame(() => { init(); draw(); });
 
@@ -296,21 +299,21 @@ export default function HeroSection({ onScrollTo }: HeroSectionProps) {
         @keyframes gSpinCW  { to { transform: rotate( 360deg); } }
         @keyframes gSpinCCW { to { transform: rotate(-360deg); } }
 
-        /* Gear animation classes (transform-origin must match gear cx/cy) */
-        .g-large { transform-origin: 360px 360px; animation: gSpinCW  20s linear infinite; }
-        .g-med1  { transform-origin: 360px 102px; animation: gSpinCCW 11s linear infinite; }
-        .g-med2  { transform-origin: 120px 360px; animation: gSpinCCW  9s linear infinite; }
-        .g-sm1   { transform-origin: 590px 360px; animation: gSpinCCW  7s linear infinite; }
-        .g-sm2   { transform-origin: 360px 580px; animation: gSpinCCW  6s linear infinite; }
+        /* Gear animation classes */
+        .g-large { transform-box: fill-box; transform-origin: center; animation: gSpinCW  20s linear infinite; }
+        .g-med1  { transform-box: fill-box; transform-origin: center; animation: gSpinCCW 11s linear infinite; }
+        .g-med2  { transform-box: fill-box; transform-origin: center; animation: gSpinCCW  9s linear infinite; }
+        .g-sm1   { transform-box: fill-box; transform-origin: center; animation: gSpinCCW  7s linear infinite; }
+        .g-sm2   { transform-box: fill-box; transform-origin: center; animation: gSpinCCW  6s linear infinite; }
 
         /* Orbit ring animations */
         @keyframes orb1 { to { transform: rotate( 360deg); } }
         @keyframes orb2 { to { transform: rotate(-360deg); } }
         @keyframes orb3 { to { transform: rotate( 360deg); } }
         @keyframes orb4 { to { transform: rotate( 360deg); } }
-        .o-ring1 { transform-origin: 360px 360px; animation: orb1 30s linear infinite; }
-        .o-ring2 { transform-origin: 360px 360px; animation: orb2 45s linear infinite; }
-        .o-ring3 { transform-origin: 360px 360px; animation: orb3 60s linear infinite; }
+        .o-ring1 { transform-box: fill-box; transform-origin: center; animation: orb1 30s linear infinite; }
+        .o-ring2 { transform-box: fill-box; transform-origin: center; animation: orb2 45s linear infinite; }
+        .o-ring3 { transform-box: fill-box; transform-origin: center; animation: orb3 60s linear infinite; }
         .o-dot   { transform-origin: 360px 360px; animation: orb4 12s linear infinite; }
 
         /* Slide fade-up */
@@ -371,6 +374,18 @@ export default function HeroSection({ onScrollTo }: HeroSectionProps) {
         .h-scroll-line {
           transform-origin: top center;
           animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        /* Respect reduced-motion preference */
+        @media (prefers-reduced-motion: reduce) {
+          .hero-root::before,
+          .hero-root::after { animation: none; }
+          .cnc-h, .cnc-v { display: none; }
+          .g-large, .g-med1, .g-med2, .g-sm1, .g-sm2 { animation: none; }
+          .o-ring1, .o-ring2, .o-ring3, .o-dot { animation: none; }
+          .hero-slide.active { animation: none; opacity: 1; transform: none; }
+          .h-blink { animation: none; opacity: 1; }
+          .h-scroll-line { animation: none; opacity: 0.5; }
         }
       `}</style>
 
@@ -490,7 +505,7 @@ export default function HeroSection({ onScrollTo }: HeroSectionProps) {
 
               {/* Three text slides */}
               {SLIDES.map((s, i) => (
-                <div key={i} className={`hero-slide${activeSlide === i ? " active" : ""}`}>
+                <div key={i} className={`hero-slide${activeSlide === i ? " active" : ""}`} aria-hidden={activeSlide !== i}>
                   <h1 style={{
                     fontFamily: "'Bebas Neue', sans-serif",
                     color: "#EEF2F5",
@@ -529,7 +544,7 @@ export default function HeroSection({ onScrollTo }: HeroSectionProps) {
                       height: "8px", borderRadius: "4px",
                       background: activeSlide === i ? "#FF6B1A" : "rgba(255,255,255,0.18)",
                       border: "none", cursor: "pointer", padding: 0,
-                      transition: "all 0.35s ease",
+                      transition: "width 0.35s ease, background 0.35s ease",
                     }}
                   />
                 ))}
@@ -537,12 +552,12 @@ export default function HeroSection({ onScrollTo }: HeroSectionProps) {
 
               {/* CTA buttons */}
               <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "56px" }}>
-                <button className="h-btn-primary" onClick={() => onScrollTo("contact")}>
+                <a href="#contact" onClick={(e) => { e.preventDefault(); onScrollTo("contact"); }} className="h-btn-primary">
                   GET A QUOTE
-                </button>
-                <button className="h-btn-ghost" onClick={() => onScrollTo("capabilities")}>
+                </a>
+                <a href="#capabilities" onClick={(e) => { e.preventDefault(); onScrollTo("capabilities"); }} className="h-btn-ghost">
                   Our Capabilities →
-                </button>
+                </a>
               </div>
 
               {/* Stats row with count-up */}
@@ -560,7 +575,7 @@ export default function HeroSection({ onScrollTo }: HeroSectionProps) {
                       fontFamily: "'Bebas Neue', sans-serif",
                       color: "#EEF2F5", fontSize: "2.6rem", lineHeight: 1,
                     }}>
-                      <span ref={el => { countEls.current[i] = el; }}>0</span>
+                      <span ref={el => { countEls.current[i] = el; }} style={{ fontVariantNumeric: "tabular-nums" }}>0</span>
                     </div>
                     <div style={{
                       fontFamily: "'Share Tech Mono', monospace",

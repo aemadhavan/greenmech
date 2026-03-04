@@ -315,7 +315,112 @@ const PORTFOLIO_IMAGES = [
 // ─────────────────────────────────────────────
 // Shared Styles
 // ─────────────────────────────────────────────
-const DISPLAY = { fontFamily: "var(--font-rajdhani)" } as const;
+const DISPLAY = { fontFamily: "var(--font-rajdhani)", textWrap: "balance" as const } as const;
+
+// ─────────────────────────────────────────────
+// Contact Form
+// ─────────────────────────────────────────────
+function ContactForm() {
+  const [fields, setFields] = useState({ name: "", company: "", email: "", phone: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const inputClass = "w-full px-4 py-3 rounded-lg border border-[#B4CCDE] text-[#0C1826] placeholder-[#7698B0] focus:outline-none focus:ring-2 focus:ring-[#1B72B8]/50 focus:border-[#1B72B8] text-sm transition-colors";
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("sending");
+    setErrorMsg("");
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(fields),
+    });
+    if (res.ok) {
+      setStatus("success");
+      setFields({ name: "", company: "", email: "", phone: "", message: "" });
+    } else {
+      const data = await res.json().catch(() => ({}));
+      setErrorMsg(data.error || "Something went wrong. Please try again.");
+      setStatus("error");
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <div className="flex flex-col items-center justify-center py-16 text-center space-y-3">
+        <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center">
+          <svg className="w-7 h-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <p className="text-[#2A4262] font-semibold text-lg">Message sent!</p>
+        <p className="text-[#7698B0] text-sm">We&apos;ll get back to you within 24 business hours.</p>
+        <button onClick={() => setStatus("idle")} className="mt-2 text-sm text-[#1B72B8] underline underline-offset-2">
+          Send another message
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <form className="space-y-5" onSubmit={handleSubmit}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label htmlFor="name" className="block text-sm font-semibold text-[#2A4262] mb-1.5">
+            Full Name <span className="text-[#F47920]">*</span>
+          </label>
+          <input id="name" type="text" required autoComplete="name" placeholder="Your full name…"
+            className={inputClass} value={fields.name}
+            onChange={(e) => setFields((f) => ({ ...f, name: e.target.value }))} />
+        </div>
+        <div>
+          <label htmlFor="company" className="block text-sm font-semibold text-[#2A4262] mb-1.5">Company</label>
+          <input id="company" type="text" autoComplete="organization" placeholder="Your company…"
+            className={inputClass} value={fields.company}
+            onChange={(e) => setFields((f) => ({ ...f, company: e.target.value }))} />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label htmlFor="email" className="block text-sm font-semibold text-[#2A4262] mb-1.5">
+            Email <span className="text-[#F47920]">*</span>
+          </label>
+          <input id="email" type="email" required autoComplete="email" spellCheck={false} placeholder="your@email.com…"
+            className={inputClass} value={fields.email}
+            onChange={(e) => setFields((f) => ({ ...f, email: e.target.value }))} />
+        </div>
+        <div>
+          <label htmlFor="phone" className="block text-sm font-semibold text-[#2A4262] mb-1.5">Phone</label>
+          <input id="phone" type="tel" autoComplete="tel" placeholder="+91 00000 00000…"
+            className={inputClass} value={fields.phone}
+            onChange={(e) => setFields((f) => ({ ...f, phone: e.target.value }))} />
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="message" className="block text-sm font-semibold text-[#2A4262] mb-1.5">
+          Message <span className="text-[#F47920]">*</span>
+        </label>
+        <textarea id="message" rows={6} required placeholder="Describe your machining requirements, material, quantity, tolerances…"
+          className={`${inputClass} resize-none`} value={fields.message}
+          onChange={(e) => setFields((f) => ({ ...f, message: e.target.value }))} />
+      </div>
+
+      {status === "error" && (
+        <p className="text-sm text-red-600">{errorMsg}</p>
+      )}
+
+      <button type="submit" disabled={status === "sending"}
+        className="w-full py-4 bg-[#F47920] text-[#071523] font-bold rounded-lg hover:bg-[#D36410] transition-all duration-200 hover:shadow-xl hover:shadow-[#F47920]/20 text-base tracking-wider disabled:opacity-60 disabled:cursor-not-allowed"
+        style={DISPLAY}>
+        {status === "sending" ? "SENDING…" : "SEND MESSAGE"}
+      </button>
+      <p className="text-center text-xs text-[#7698B0]">We respond within 24 business hours.</p>
+    </form>
+  );
+}
 
 // ─────────────────────────────────────────────
 // Main Page
@@ -363,11 +468,13 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <button
-              onClick={() => scrollTo("home")}
+            <a
+              href="#home"
+              onClick={(e) => { e.preventDefault(); scrollTo("home"); }}
+              aria-label="GreenMech Automation – home"
               className="flex items-center gap-2.5 group"
             >
-              <img src="/greenmach-logo.png" alt="GreenMech logo" className="w-10 h-10 shrink-0 object-contain" />
+              <img src="/greenmach-logo.png" alt="GreenMech Automation logo" width={40} height={40} fetchPriority="high" className="w-10 h-10 shrink-0 object-contain" />
               <div className="text-left leading-tight">
                 <span
                   className="block text-[#1B72B8] font-bold text-base"
@@ -379,26 +486,28 @@ export default function Home() {
                   Automation
                 </span>
               </div>
-            </button>
+            </a>
 
             {/* Desktop Nav */}
             <div className="hidden lg:flex items-center gap-0.5">
               {NAV_LINKS.map((link) => (
-                <button
+                <a
                   key={link.href}
-                  onClick={() => scrollTo(link.href)}
+                  href={`#${link.href}`}
+                  onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
                   className="px-3.5 py-2 text-sm text-white/75 hover:text-[#F47920] transition-colors duration-200 font-medium tracking-wide"
                 >
                   {link.label}
-                </button>
+                </a>
               ))}
-              <button
-                onClick={() => scrollTo("contact")}
+              <a
+                href="#contact"
+                onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}
                 className="ml-4 px-5 py-2.5 bg-[#F47920] text-[#071523] text-sm font-bold rounded-lg hover:bg-[#D36410] transition-colors duration-200 tracking-wider"
                 style={DISPLAY}
               >
                 GET A QUOTE
-              </button>
+              </a>
             </div>
 
             {/* Mobile Toggle */}
@@ -416,21 +525,23 @@ export default function Home() {
         {menuOpen && (
           <div className="lg:hidden bg-[#071523]/98 backdrop-blur-md border-t border-white/10 px-5 pb-5">
             {NAV_LINKS.map((link) => (
-              <button
+              <a
                 key={link.href}
-                onClick={() => scrollTo(link.href)}
+                href={`#${link.href}`}
+                onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
                 className="block w-full text-left py-3.5 text-white/75 hover:text-[#F47920] transition-colors border-b border-white/5 text-sm font-medium"
               >
                 {link.label}
-              </button>
+              </a>
             ))}
-            <button
-              onClick={() => scrollTo("contact")}
-              className="mt-5 w-full py-3.5 bg-[#F47920] text-[#071523] font-bold rounded-lg text-sm tracking-wider"
+            <a
+              href="#contact"
+              onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}
+              className="mt-5 block w-full text-center py-3.5 bg-[#F47920] text-[#071523] font-bold rounded-lg text-sm tracking-wider"
               style={DISPLAY}
             >
               GET A QUOTE
-            </button>
+            </a>
           </div>
         )}
       </nav>
@@ -453,7 +564,7 @@ export default function Home() {
                   <div className="absolute inset-0 hero-grid opacity-40" />
                   <div className="absolute inset-0 bg-linear-to-br from-[#071523]/60 to-[#1B72B8]/10" />
                   <div className="relative z-10 flex flex-col items-center gap-3">
-                    <div className="text-[#1B72B8]/60">
+                    <div className="text-[#1B72B8]/60" aria-hidden="true">
                       <IconGear className="w-36 h-36 animate-spin-slow" />
                     </div>
                     <span className="text-white/30 text-xs font-bold tracking-[0.25em] uppercase">
@@ -530,12 +641,13 @@ export default function Home() {
                   ))}
                 </div>
 
-                <button
-                  onClick={() => scrollTo("contact")}
+                <a
+                  href="#contact"
+                  onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-[#0C1826] text-white font-semibold rounded-lg hover:bg-[#1B72B8] transition-colors duration-200 text-sm"
                 >
                   Get in Touch →
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -566,12 +678,15 @@ export default function Home() {
               {INDUSTRIES.map(({ name, desc, img }, i) => (
                 <div
                   key={i}
-                  className="bg-white rounded-xl overflow-hidden border border-[#C4D9EE] shadow-sm hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300 group"
+                  className="bg-white rounded-xl overflow-hidden border border-[#C4D9EE] shadow-sm hover:shadow-lg hover:-translate-y-1.5 transition-[transform,box-shadow] duration-300 group"
                 >
                   <div className="relative aspect-video overflow-hidden">
                     <img
                       src={img}
-                      alt={name}
+                      alt={`${name} precision components – GreenMech Automation`}
+                      width={400}
+                      height={225}
+                      loading="lazy"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
@@ -615,13 +730,16 @@ export default function Home() {
               {CAPABILITIES.map((cap, i) => (
                 <div
                   key={i}
-                  className="rounded-xl overflow-hidden border border-[#C4D9EE] hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group bg-white"
+                  className="rounded-xl overflow-hidden border border-[#C4D9EE] hover:shadow-xl hover:-translate-y-1.5 transition-[transform,box-shadow] duration-300 group bg-white"
                 >
                   {/* Image */}
                   <div className="relative aspect-video overflow-hidden">
                     <img
                       src={cap.img}
-                      alt={cap.name}
+                      alt={`${cap.name} – GreenMech Automation Coimbatore`}
+                      width={600}
+                      height={338}
+                      loading="lazy"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     {/* Title overlay */}
@@ -761,7 +879,7 @@ export default function Home() {
                     {cat.machines.map((m, mi) => (
                       <div
                         key={mi}
-                        className="shrink-0 w-60 rounded-xl overflow-hidden bg-[#0A1628] border border-white/8 hover:border-white/20 hover:shadow-xl transition-all duration-300 group flex flex-col"
+                        className="shrink-0 w-60 rounded-xl overflow-hidden bg-[#0A1628] border border-white/8 hover:border-white/20 hover:shadow-xl transition-[border-color,box-shadow] duration-300 group flex flex-col"
                       >
                         <div className="h-1" style={{ background: cat.color }} />
                         <div className="p-5 flex flex-col flex-1">
@@ -774,13 +892,13 @@ export default function Home() {
                           <p className="text-white/40 text-xs leading-relaxed mb-4">{m.make}</p>
                           <div className="mt-auto pt-4 border-t border-white/8 space-y-2.5">
                             <div className="flex items-start gap-2">
-                              <svg className="w-3 h-3 text-white/25 mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                              <svg aria-hidden="true" className="w-3 h-3 text-white/25 mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" d="M3 9h18M3 15h18M9 3v18M15 3v18" />
                               </svg>
                               <span className="font-mono text-[11px] text-white/50 leading-relaxed">{m.size}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <svg className="w-3 h-3 text-white/25 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" viewBox="0 0 24 24">
+                              <svg aria-hidden="true" className="w-3 h-3 text-white/25 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" viewBox="0 0 24 24">
                                 <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
                               </svg>
                               <span className="text-[11px] text-white/50">{m.qty} {m.qty === 1 ? "unit" : "units"}</span>
@@ -833,10 +951,10 @@ export default function Home() {
               {QUALITY_INSTRUMENTS.map((inst, i) => (
                 <div
                   key={i}
-                  className="bg-white rounded-xl p-7 border border-[#C4D9EE] shadow-sm hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300 group"
+                  className="bg-white rounded-xl p-7 border border-[#C4D9EE] shadow-sm hover:shadow-lg hover:-translate-y-1.5 transition-[transform,box-shadow] duration-300 group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#E4F0FF] flex items-center justify-center mb-5 group-hover:bg-[#1B72B8] transition-colors duration-300">
-                    <IconCheckCircle className="w-6 h-6 text-[#1B72B8] group-hover:text-white transition-colors duration-300" />
+                  <div className="w-12 h-12 rounded-xl bg-[#E4F0FF] flex items-center justify-center mb-5 group-hover:bg-[#1B72B8] transition-[background-color] duration-300" aria-hidden="true">
+                    <IconCheckCircle className="w-6 h-6 text-[#1B72B8] group-hover:text-white transition-[color] duration-300" />
                   </div>
                   <h3
                     className="font-bold text-[#0C1826] mb-2.5 text-lg leading-tight"
@@ -874,9 +992,9 @@ export default function Home() {
               {WHY_CHOOSE.map(({ title, desc, Icon }, i) => (
                 <div
                   key={i}
-                  className="text-center px-5 py-8 rounded-xl border border-[#C4D9EE] hover:border-[#1B72B8] hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group"
+                  className="text-center px-5 py-8 rounded-xl border border-[#C4D9EE] hover:border-[#1B72B8] hover:shadow-xl hover:-translate-y-1.5 transition-[transform,box-shadow,border-color] duration-300 group"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-[#E4F0FF] flex items-center justify-center mx-auto mb-5 text-[#1B72B8] group-hover:bg-[#1B72B8] group-hover:text-white transition-all duration-300">
+                  <div className="w-14 h-14 rounded-2xl bg-[#E4F0FF] flex items-center justify-center mx-auto mb-5 text-[#1B72B8] group-hover:bg-[#1B72B8] group-hover:text-white transition-[background-color,color] duration-300" aria-hidden="true">
                     <Icon className="w-7 h-7" />
                   </div>
                   <h3
@@ -920,25 +1038,29 @@ export default function Home() {
                 <>
                   <div className="columns-2 sm:columns-3 lg:columns-4 gap-3 space-y-3">
                     {visible.map((src, i) => (
-                      <div
+                      <button
                         key={i}
-                        className="break-inside-avoid relative group cursor-pointer overflow-hidden rounded-xl bg-[#0A1628]"
+                        type="button"
+                        aria-label={`View portfolio image ${i + 1}`}
+                        className="block w-full break-inside-avoid relative group cursor-pointer overflow-hidden rounded-xl bg-[#0A1628]"
                         onClick={() => setPortfolioOpen(i)}
                       >
                         <img
                           src={src}
-                          alt={`Portfolio ${i + 1}`}
+                          alt=""
+                          width={400}
+                          height={300}
                           className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
                           loading="lazy"
                         />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-[background-color] duration-300 flex items-center justify-center">
                           <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
-                            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                               <path strokeLinecap="round" d="M15 3h6m0 0v6m0-6L10 14M9 3H3v18h18v-6" />
                             </svg>
                           </div>
                         </div>
-                      </div>
+                      </button>
                     ))}
                   </div>
 
@@ -946,10 +1068,10 @@ export default function Home() {
                     <div className="text-center mt-12">
                       <button
                         onClick={() => setShowAllPortfolio(true)}
-                        className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/20 text-white/70 hover:text-white hover:border-white/50 transition-all duration-300 text-sm font-medium tracking-wider"
+                        className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/20 text-white/70 hover:text-white hover:border-white/50 transition-[color,border-color] duration-300 text-sm font-medium tracking-wider"
                       >
                         View All {PORTFOLIO_IMAGES.length} Photos
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                           <path strokeLinecap="round" d="M19 9l-7 7-7-7" />
                         </svg>
                       </button>
@@ -964,7 +1086,7 @@ export default function Home() {
         {/* ══════════════════════════════════════════
             VALUED CUSTOMERS
         ══════════════════════════════════════════ */}
-        <section className="py-20 bg-[#071523] relative overflow-hidden">
+        <section id="customers" className="py-20 bg-[#071523] relative overflow-hidden">
           <div className="absolute inset-0 hero-grid opacity-30" />
           <div
             className="absolute inset-0 opacity-20"
@@ -999,11 +1121,14 @@ export default function Home() {
               ].map((c, i) => (
                 <div
                   key={i}
-                  className="bg-white backdrop-blur-sm border border-white/20 rounded-2xl px-10 py-7 text-center hover:scale-105 hover:shadow-2xl hover:shadow-black/40 transition-all duration-300 min-w-65"
+                  className="bg-white backdrop-blur-sm border border-white/20 rounded-2xl px-10 py-7 text-center hover:scale-105 hover:shadow-2xl hover:shadow-black/40 transition-[transform,box-shadow] duration-300 min-w-65"
                 >
                   <img
                     src={c.src}
                     alt={c.alt}
+                    width={200}
+                    height={56}
+                    loading="lazy"
                     className="h-14 w-auto mx-auto object-contain"
                   />
                   <div className="text-[#4A6B8C] text-xs mt-3 font-medium">{c.label}</div>
@@ -1097,7 +1222,7 @@ export default function Home() {
                       },
                     ].map(({ Icon, label, content }, i) => (
                       <div key={i} className="flex gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-[#1B72B8]/25 flex items-center justify-center shrink-0 mt-0.5">
+                        <div className="w-10 h-10 rounded-lg bg-[#1B72B8]/25 flex items-center justify-center shrink-0 mt-0.5" aria-hidden="true">
                           <Icon className="w-4.5 h-4.5 text-[#F47920]" />
                         </div>
                         <div>
@@ -1122,81 +1247,7 @@ export default function Home() {
               </div>
 
               {/* Form */}
-              <form
-                className="space-y-5"
-                onSubmit={(e) => e.preventDefault()}
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-semibold text-[#2A4262] mb-1.5">
-                      Full Name <span className="text-[#F47920]">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="Your full name"
-                      className="w-full px-4 py-3 rounded-lg border border-[#B4CCDE] text-[#0C1826] placeholder-[#7698B0] focus:outline-none focus:ring-2 focus:ring-[#1B72B8]/50 focus:border-[#1B72B8] text-sm transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-[#2A4262] mb-1.5">
-                      Company
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Your company"
-                      className="w-full px-4 py-3 rounded-lg border border-[#B4CCDE] text-[#0C1826] placeholder-[#7698B0] focus:outline-none focus:ring-2 focus:ring-[#1B72B8]/50 focus:border-[#1B72B8] text-sm transition-colors"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-semibold text-[#2A4262] mb-1.5">
-                      Email <span className="text-[#F47920]">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="your@email.com"
-                      className="w-full px-4 py-3 rounded-lg border border-[#B4CCDE] text-[#0C1826] placeholder-[#7698B0] focus:outline-none focus:ring-2 focus:ring-[#1B72B8]/50 focus:border-[#1B72B8] text-sm transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-[#2A4262] mb-1.5">
-                      Phone
-                    </label>
-                    <input
-                      type="tel"
-                      placeholder="+91 00000 00000"
-                      className="w-full px-4 py-3 rounded-lg border border-[#B4CCDE] text-[#0C1826] placeholder-[#7698B0] focus:outline-none focus:ring-2 focus:ring-[#1B72B8]/50 focus:border-[#1B72B8] text-sm transition-colors"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-[#2A4262] mb-1.5">
-                    Message <span className="text-[#F47920]">*</span>
-                  </label>
-                  <textarea
-                    rows={6}
-                    required
-                    placeholder="Describe your machining requirements, material, quantity, tolerances..."
-                    className="w-full px-4 py-3 rounded-lg border border-[#B4CCDE] text-[#0C1826] placeholder-[#7698B0] focus:outline-none focus:ring-2 focus:ring-[#1B72B8]/50 focus:border-[#1B72B8] text-sm resize-none transition-colors"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-4 bg-[#F47920] text-[#071523] font-bold rounded-lg hover:bg-[#D36410] transition-all duration-200 hover:shadow-xl hover:shadow-[#F47920]/20 text-base tracking-wider"
-                  style={DISPLAY}
-                >
-                  SEND MESSAGE
-                </button>
-                <p className="text-center text-xs text-[#7698B0]">
-                  We respond within 24 business hours.
-                </p>
-              </form>
+              <ContactForm />
             </div>
           </div>
         </section>
@@ -1211,7 +1262,7 @@ export default function Home() {
             {/* Brand */}
             <div className="md:col-span-2">
               <div className="flex items-center gap-2.5 mb-5">
-                <img src="/greenmach-logo.jpeg" alt="GreenMech logo" className="w-10 h-10 shrink-0 object-contain" />
+                <img src="/greenmach-logo.jpeg" alt="GreenMech logo" width={40} height={40} className="w-10 h-10 shrink-0 object-contain" />
                 <div>
                   <span
                     className="block text-white font-bold"
@@ -1245,12 +1296,13 @@ export default function Home() {
               <ul className="space-y-2.5">
                 {NAV_LINKS.map((link) => (
                   <li key={link.href}>
-                    <button
-                      onClick={() => scrollTo(link.href)}
+                    <a
+                      href={`#${link.href}`}
+                      onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
                       className="text-white/40 hover:text-[#F47920] text-sm transition-colors duration-200"
                     >
                       {link.label}
-                    </button>
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -1312,10 +1364,11 @@ export default function Home() {
         >
           {/* Close */}
           <button
+            aria-label="Close lightbox"
             className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors z-10"
             onClick={() => setPortfolioOpen(null)}
           >
-            <IconClose className="w-5 h-5" />
+            <IconClose aria-hidden className="w-5 h-5" />
           </button>
 
           {/* Counter */}
@@ -1325,26 +1378,30 @@ export default function Home() {
 
           {/* Prev */}
           <button
+            aria-label="Previous image"
             className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors z-10"
             onClick={(e) => { e.stopPropagation(); setPortfolioOpen((portfolioOpen - 1 + PORTFOLIO_IMAGES.length) % PORTFOLIO_IMAGES.length); }}
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
+            <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
           </button>
 
           {/* Image */}
           <img
             src={PORTFOLIO_IMAGES[portfolioOpen]}
-            alt={`Portfolio ${portfolioOpen + 1}`}
+            alt={`Portfolio image ${portfolioOpen + 1}`}
+            width={1200}
+            height={900}
             className="max-h-[90vh] max-w-[90vw] object-contain rounded-xl shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           />
 
           {/* Next */}
           <button
+            aria-label="Next image"
             className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors z-10"
             onClick={(e) => { e.stopPropagation(); setPortfolioOpen((portfolioOpen + 1) % PORTFOLIO_IMAGES.length); }}
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" /></svg>
+            <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" /></svg>
           </button>
 
           {/* Thumbnail strip */}
@@ -1352,10 +1409,11 @@ export default function Home() {
             {PORTFOLIO_IMAGES.map((src, i) => (
               <button
                 key={i}
+                aria-label={`Go to image ${i + 1}`}
                 onClick={(e) => { e.stopPropagation(); setPortfolioOpen(i); }}
-                className={`shrink-0 w-12 h-9 rounded overflow-hidden transition-all duration-200 ${i === portfolioOpen ? "ring-2 ring-[#F47920] opacity-100" : "opacity-40 hover:opacity-70"}`}
+                className={`shrink-0 w-12 h-9 rounded overflow-hidden transition-opacity duration-200 ${i === portfolioOpen ? "ring-2 ring-[#F47920] opacity-100" : "opacity-40 hover:opacity-70"}`}
               >
-                <img src={src} alt="" className="w-full h-full object-cover" />
+                <img src={src} alt="" width={48} height={36} className="w-full h-full object-cover" />
               </button>
             ))}
           </div>
