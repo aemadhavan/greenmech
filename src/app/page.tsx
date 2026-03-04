@@ -123,6 +123,7 @@ const NAV_LINKS = [
   { label: "Machinery", href: "machinery" },
   { label: "Quality", href: "quality" },
   { label: "Why Us", href: "why-us" },
+  { label: "Portfolio", href: "portfolio" },
   { label: "Contact", href: "contact" },
 ];
 
@@ -269,6 +270,48 @@ const WHY_CHOOSE = [
   },
 ];
 
+const PORTFOLIO_IMAGES = [
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.37%20PM%20(1).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.37%20PM.jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.38%20PM%20(1).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.38%20PM%20(2).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.38%20PM%20(3).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.38%20PM.jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.39%20PM%20(1).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.39%20PM%20(2).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.39%20PM%20(3).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.39%20PM.jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.40%20PM%20(1).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.40%20PM%20(2).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.40%20PM.jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.41%20PM%20(1).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.41%20PM%20(2).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.41%20PM%20(3).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.41%20PM.jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.42%20PM%20(1).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.42%20PM%20(2).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.42%20PM.jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.43%20PM%20(1).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.43%20PM%20(2).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.43%20PM%20(3).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.43%20PM.jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.44%20PM%20(1).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.44%20PM%20(2).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.44%20PM.jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.45%20PM.jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.46%20PM%20(1).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.46%20PM%20(2).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.46%20PM.jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.47%20PM%20(1).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.47%20PM%20(2).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.47%20PM.jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.48%20PM%20(1).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.48%20PM%20(2).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.48%20PM.jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.49%20PM%20(1).jpeg",
+  "/designportfolio/WhatsApp%20Image%202026-02-22%20at%202.57.49%20PM.jpeg",
+];
+
 // ─────────────────────────────────────────────
 // Shared Styles
 // ─────────────────────────────────────────────
@@ -280,11 +323,25 @@ const DISPLAY = { fontFamily: "var(--font-rajdhani)" } as const;
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [portfolioOpen, setPortfolioOpen] = useState<number | null>(null);
+  const [showAllPortfolio, setShowAllPortfolio] = useState(false);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (portfolioOpen === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setPortfolioOpen(null);
+      if (e.key === "ArrowRight") setPortfolioOpen((i) => i !== null ? (i + 1) % PORTFOLIO_IMAGES.length : null);
+      if (e.key === "ArrowLeft") setPortfolioOpen((i) => i !== null ? (i - 1 + PORTFOLIO_IMAGES.length) % PORTFOLIO_IMAGES.length : null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [portfolioOpen]);
 
   const scrollTo = (id: string) => {
     setMenuOpen(false);
@@ -836,6 +893,75 @@ export default function Home() {
         </section>
 
         {/* ══════════════════════════════════════════
+            DESIGN PORTFOLIO
+        ══════════════════════════════════════════ */}
+        <section id="portfolio" className="py-24 bg-[#050D16]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Header */}
+            <div className="text-center mb-16">
+              <p className="text-[#F47920] text-xs font-bold tracking-widest uppercase mb-3">
+                Our Work
+              </p>
+              <h2
+                className="text-4xl lg:text-5xl font-bold text-white section-title-center"
+                style={DISPLAY}
+              >
+                Design Portfolio
+              </h2>
+              <p className="mt-6 text-white/40 max-w-xl mx-auto">
+                A showcase of precision-machined components crafted to exacting tolerances — quality you can see.
+              </p>
+            </div>
+
+            {/* Masonry Grid */}
+            {(() => {
+              const visible = showAllPortfolio ? PORTFOLIO_IMAGES : PORTFOLIO_IMAGES.slice(0, 12);
+              return (
+                <>
+                  <div className="columns-2 sm:columns-3 lg:columns-4 gap-3 space-y-3">
+                    {visible.map((src, i) => (
+                      <div
+                        key={i}
+                        className="break-inside-avoid relative group cursor-pointer overflow-hidden rounded-xl bg-[#0A1628]"
+                        onClick={() => setPortfolioOpen(i)}
+                      >
+                        <img
+                          src={src}
+                          alt={`Portfolio ${i + 1}`}
+                          className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
+                            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" d="M15 3h6m0 0v6m0-6L10 14M9 3H3v18h18v-6" />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {!showAllPortfolio && PORTFOLIO_IMAGES.length > 12 && (
+                    <div className="text-center mt-12">
+                      <button
+                        onClick={() => setShowAllPortfolio(true)}
+                        className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/20 text-white/70 hover:text-white hover:border-white/50 transition-all duration-300 text-sm font-medium tracking-wider"
+                      >
+                        View All {PORTFOLIO_IMAGES.length} Photos
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                    </div>
+                  )}
+                </>
+              );
+            })()}
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════
             VALUED CUSTOMERS
         ══════════════════════════════════════════ */}
         <section className="py-20 bg-[#071523] relative overflow-hidden">
@@ -1175,6 +1301,66 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* ══════════════════════════════════════════
+          LIGHTBOX
+      ══════════════════════════════════════════ */}
+      {portfolioOpen !== null && (
+        <div
+          className="fixed inset-0 z-100 bg-black/95 backdrop-blur-sm flex items-center justify-center"
+          onClick={() => setPortfolioOpen(null)}
+        >
+          {/* Close */}
+          <button
+            className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors z-10"
+            onClick={() => setPortfolioOpen(null)}
+          >
+            <IconClose className="w-5 h-5" />
+          </button>
+
+          {/* Counter */}
+          <div className="absolute top-5 left-1/2 -translate-x-1/2 text-white/40 text-xs tracking-widest font-mono">
+            {portfolioOpen + 1} / {PORTFOLIO_IMAGES.length}
+          </div>
+
+          {/* Prev */}
+          <button
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors z-10"
+            onClick={(e) => { e.stopPropagation(); setPortfolioOpen((portfolioOpen - 1 + PORTFOLIO_IMAGES.length) % PORTFOLIO_IMAGES.length); }}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
+          </button>
+
+          {/* Image */}
+          <img
+            src={PORTFOLIO_IMAGES[portfolioOpen]}
+            alt={`Portfolio ${portfolioOpen + 1}`}
+            className="max-h-[90vh] max-w-[90vw] object-contain rounded-xl shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+
+          {/* Next */}
+          <button
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors z-10"
+            onClick={(e) => { e.stopPropagation(); setPortfolioOpen((portfolioOpen + 1) % PORTFOLIO_IMAGES.length); }}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" /></svg>
+          </button>
+
+          {/* Thumbnail strip */}
+          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-1.5 overflow-x-auto max-w-[90vw] px-2 pb-1">
+            {PORTFOLIO_IMAGES.map((src, i) => (
+              <button
+                key={i}
+                onClick={(e) => { e.stopPropagation(); setPortfolioOpen(i); }}
+                className={`shrink-0 w-12 h-9 rounded overflow-hidden transition-all duration-200 ${i === portfolioOpen ? "ring-2 ring-[#F47920] opacity-100" : "opacity-40 hover:opacity-70"}`}
+              >
+                <img src={src} alt="" className="w-full h-full object-cover" />
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </>
   );
 }
