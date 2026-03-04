@@ -15,13 +15,6 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        // Long-lived cache for public images, fonts, and icons
-        source: "/(.*)\\.(?:png|jpg|jpeg|gif|ico|svg|woff2|woff|ttf|otf)",
-        headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
-        ],
-      },
-      {
         // Security + content-type headers on all routes
         source: "/(.*)",
         headers: [
